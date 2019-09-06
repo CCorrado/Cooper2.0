@@ -3,8 +3,8 @@
 const env = require('dotenv').config()
 
 if (env.error) {
-  const { EnvInitializationError } = require('./errors/')
-  throw new EnvInitializationError('Failed to initialize environmental variables.')
+  const { InitializationError } = require('./errors/')
+  throw new InitializationError('Failed to initialize environmental variables.')
 }
 
 module.exports = function (name, value) {
