@@ -1,0 +1,32 @@
+{
+  "name": "cooper_2.0",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "code-style:fix": "./node_modules/.bin/standard --fix",
+    "test": "ENV=mock ./node_modules/.bin/istanbul cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --reporter mochawesome --reporter-options reportDir=coverage \"./tests/unit/**/*.test.js\" --recursive --timeout 5000",
+    "test:code-style": "./node_modules/.bin/check-node-version --node \">=10\" && ./node_modules/.bin/standard | ./node_modules/.bin/snazzy",
+    "test:file": "ENV=mock ./node_modules/mocha/bin/_mocha",
+    "watch": "nodemon -L app.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.4",
+    "body-parser": "latest",
+    "cookie-parser": "^1.4.4",
+    "csurf": "^1.10.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-promise-router": "^3.0.3",
+    "helmet": "^3.16.0",
+    "http-errors": "~1.6.2",
+    "jsonwebtoken": "^8.5.1",
+    "request": "^2.88.0",
+    "uuid": "latest",
+    "dotenv": "latest"
+  },
+  "devDependencies": {
+    "express-swagger-generator": "^1.1.14"
+  }
+}
