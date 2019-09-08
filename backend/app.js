@@ -1,22 +1,21 @@
 'use strict'
 
-const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
 
 const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
-const expressSwagger = require('express-swagger-generator')(app);
+const expressSwagger = require('express-swagger-generator')(app)
 const port = process.env.HTTP_PORT || 3000
 
 // Parse JSON request bodies
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(cookieParser());
-app.use(helmet());
-
+app.use(cookieParser())
+app.use(helmet())
 
 // Set up routes
 app.use(require('./routes'))
@@ -29,13 +28,13 @@ const options = {
     info: {
       description: 'This is the API Documentation for the cooper Project',
       title: 'Swagger',
-      version: '1.0.0',
+      version: '1.0.0'
     },
     host: 'localhost:3000',
     basePath: '/',
     produces: [
-      "application/json",
-      "application/xml"
+      'application/json',
+      'application/xml'
     ],
     schemes: ['http', 'https'],
     securityDefinitions: {
@@ -43,13 +42,13 @@ const options = {
         type: 'apiKey',
         in: 'header',
         name: 'Authorization',
-        description: "",
+        description: ''
       }
     }
   },
-  basedir: __dirname, //app absolute path
-  files: ['./routes/**/*.js'] //Path to the API handle folder
-};
+  basedir: __dirname, // app absolute path
+  files: ['./routes/**/*.js'] // Path to the API handle folder
+}
 
 expressSwagger(options)
 

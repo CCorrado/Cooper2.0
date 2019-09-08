@@ -3,7 +3,7 @@
 const HttpError = require('../errors/HttpError')
 
 module.exports = function (err, req, res, next) {
-  if (err instanceof HttpError === false) {
+  if (!(err instanceof HttpError)) {
     err = new HttpError(500, { message: err.message })
   }
 

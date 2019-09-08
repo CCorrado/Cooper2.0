@@ -1,8 +1,7 @@
 SSW 695 Mr. Cooper 2.0
 ------------------------------
 [![Build Status](https://travis-ci.org/CCorrado/Cooper2.0.svg?branch=master)](https://travis-ci.org/CCorrado/Cooper2.0)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/74ed9326dbaa4542a6e381c4f68d9d84)](https://www.codacy.com/app/CCorrado/Cooper2.0?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CCorrado/Cooper2.0&amp;utm_campaign=Badge_Grade)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9b29c475e12048e887a5f62a973e04ab)](https://www.codacy.com/manual/CCorrado/Cooper2.0?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CCorrado/Cooper2.0&amp;utm_campaign=Badge_Grade)
 Current version: 1.0.0
 
 
