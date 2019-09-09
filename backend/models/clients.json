@@ -1,0 +1,8 @@
+[
+  {
+    "id": "uniqueclientid",
+    "title": "cooper",
+    "clientId": "uniqueID",
+    "clientSecret": "uniqueSecret"
+  }
+]
