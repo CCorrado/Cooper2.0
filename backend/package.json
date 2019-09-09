@@ -11,7 +11,7 @@
     "watch": "nodemon -L app.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bluebird": "^3.5.4",
     "body-parser": "latest",
     "cookie-parser": "^1.4.4",
