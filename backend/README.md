@@ -6,3 +6,6 @@ SSW 690 API Gateway
 
 ### API Specification
 * Open a browser and navigate to `127.0.0.1:3000/api-docs`
+
+### docs/
+* the mdj file can be opened with StarUML
