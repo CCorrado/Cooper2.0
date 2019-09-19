@@ -63,9 +63,9 @@
 												"$ref": "AAAAAAFtRe1FjZvSr1o="
 											},
 											"font": "Arial;13;0",
-											"left": 78.97900390625,
+											"left": 74.58642578125,
 											"top": 5,
-											"width": 79.7744140625,
+											"width": 71.78271484375,
 											"height": 13,
 											"text": "login_session"
 										},
@@ -78,7 +78,7 @@
 											"font": "Arial;13;1",
 											"left": 13,
 											"top": 5,
-											"width": 60.97900390625,
+											"width": 56.58642578125,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -571,9 +571,9 @@
 											},
 											"fillColor": "#ff0000",
 											"font": "Arial;13;0",
-											"left": 95.9599609375,
+											"left": 92.3291015625,
 											"top": 165,
-											"width": 32.078125,
+											"width": 30.5927734375,
 											"height": 13,
 											"text": "failed"
 										},
@@ -587,7 +587,7 @@
 											"font": "Arial;13;1",
 											"left": 69,
 											"top": 165,
-											"width": 21.9599609375,
+											"width": 18.3291015625,
 											"height": 13,
 											"text": "seq"
 										},
@@ -677,9 +677,9 @@
 												"$ref": "AAAAAAFtRfhtvZ3EbuQ="
 											},
 											"font": "Arial;13;0",
-											"left": 87.9599609375,
+											"left": 84.3291015625,
 											"top": 453,
-											"width": 82.6689453125,
+											"width": 75.36279296875,
 											"height": 13,
 											"text": "token_expired"
 										},
@@ -692,7 +692,7 @@
 											"font": "Arial;13;1",
 											"left": 61,
 											"top": 453,
-											"width": 21.9599609375,
+											"width": 18.3291015625,
 											"height": 13,
 											"text": "seq"
 										},
@@ -3210,9 +3210,9 @@
 												"$ref": "AAAAAAFtRgN+Vp9wqYo="
 											},
 											"font": "Arial;13;0",
-											"left": 75.97900390625,
+											"left": 71.58642578125,
 											"top": 5,
-											"width": 95.65625,
+											"width": 84.0400390625,
 											"height": 13,
 											"text": "register_session"
 										},
@@ -3225,7 +3225,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 5,
-											"width": 60.97900390625,
+											"width": 56.58642578125,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -3603,9 +3603,9 @@
 												"$ref": "AAAAAAFtRgXepaDOzIs="
 											},
 											"font": "Arial;13;0",
-											"left": 79.9599609375,
+											"left": 76.3291015625,
 											"top": 149,
-											"width": 28.447265625,
+											"width": 26.25732421875,
 											"height": 13,
 											"text": "error"
 										},
@@ -3618,7 +3618,7 @@
 											"font": "Arial;13;1",
 											"left": 53,
 											"top": 149,
-											"width": 21.9599609375,
+											"width": 18.3291015625,
 											"height": 13,
 											"text": "seq"
 										},
@@ -5564,7 +5564,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFtSzSR3OnpacY="
 					},
-					"name": "Interaction1",
+					"name": "Associate_time_range",
 					"ownedElements": [
 						{
 							"_type": "UMLSequenceDiagram",
@@ -5572,7 +5572,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFtSzSR3Onq6UE="
 							},
-							"name": "Associate_course",
+							"name": "Associate_time_range",
 							"ownedViews": [
 								{
 									"_type": "UMLFrameView",
@@ -5593,9 +5593,9 @@
 											"font": "Arial;13;0",
 											"left": 75.97900390625,
 											"top": 10,
-											"width": 103.60986328125,
+											"width": 129.62890625,
 											"height": 13,
-											"text": "Associate_course"
+											"text": "Associate_time_range"
 										},
 										{
 											"_type": "LabelView",
@@ -5676,9 +5676,9 @@
 													"visible": false,
 													"font": "Arial;13;0",
 													"left": -16,
-													"width": 106.20263671875,
+													"width": 166.89892578125,
 													"height": 13,
-													"text": "(from Interaction1)"
+													"text": "(from Associate_time_range)"
 												},
 												{
 													"_type": "LabelView",
@@ -5790,9 +5790,9 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"width": 106.20263671875,
+													"width": 166.89892578125,
 													"height": 13,
-													"text": "(from Interaction1)"
+													"text": "(from Associate_time_range)"
 												},
 												{
 													"_type": "LabelView",
@@ -5903,9 +5903,9 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"width": 106.20263671875,
+													"width": 166.89892578125,
 													"height": 13,
-													"text": "(from Interaction1)"
+													"text": "(from Associate_time_range)"
 												},
 												{
 													"_type": "LabelView",
@@ -6096,9 +6096,9 @@
 												"$ref": "AAAAAAFtSzwCkH+gTJc="
 											},
 											"font": "Arial;13;0",
-											"left": 131,
+											"left": 118,
 											"top": 136,
-											"width": 119.234375,
+											"width": 145.25341796875,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 10,
@@ -6106,7 +6106,7 @@
 												"$ref": "AAAAAAFtSzwCkH+h274="
 											},
 											"edgePosition": 1,
-											"text": "2 : associate_course"
+											"text": "2 : associate_time_range"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -6991,7 +6991,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFtSzSR3Onq6UE="
 							},
-							"name": "associate_course",
+							"name": "associate_time_range",
 							"source": {
 								"$ref": "AAAAAAFtSzsGU38nmA4="
 							},
@@ -7148,7 +7148,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFtSzSR3OnpacY="
 					},
-					"name": "Role1"
+					"name": "Role1",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -7156,7 +7157,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFtSzSR3OnpacY="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -7164,7 +7166,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFtSzSR3OnpacY="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				}
 			]
 		}
