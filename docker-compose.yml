@@ -13,7 +13,7 @@ services:
       - MYSQL_DATABASE=cooper
       - MYSQL_PASSWORD=root
     ports:
-      - 33061:3306
+      - 3306:3306
   cooper-database-api:
     build: database
     depends_on:

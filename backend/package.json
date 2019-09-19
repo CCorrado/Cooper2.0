@@ -17,14 +17,15 @@
     "cookie-parser": "^1.4.4",
     "csurf": "^1.10.0",
     "debug": "~2.6.9",
+    "dotenv": "latest",
     "express": "~4.16.0",
     "express-promise-router": "^3.0.3",
     "helmet": "^3.16.0",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.5.1",
     "request": "^2.88.0",
-    "uuid": "latest",
-    "dotenv": "latest"
+    "url-join": "^4.0.1",
+    "uuid": "latest"
   },
   "devDependencies": {
     "chai": "^4.2.0",

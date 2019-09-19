@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const expressSwagger = require('express-swagger-generator')(app)
-const port = process.env.HTTP_PORT || 3000
+const port = process.env.PORT || 9000
 
 // Parse JSON request bodies
 app.use(bodyParser.json())
@@ -30,7 +30,7 @@ const options = {
       title: 'Swagger',
       version: '1.0.0'
     },
-    host: 'localhost:3000',
+    host: 'localhost:9000',
     basePath: '/',
     produces: [
       'application/json',
