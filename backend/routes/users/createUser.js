@@ -75,7 +75,6 @@ function sendNewUser (res, user) {
   // Save this user to the database
   return axios.post('http://cooper-database-api:5432/users', user)
     .then(function (response) {
-      user.accessToken = sha.sha256()
       return res.status(201).send(response.data)
     })
     .catch(function (error) {
