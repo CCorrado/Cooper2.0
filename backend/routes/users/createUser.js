@@ -68,19 +68,14 @@ module.exports = function (req, res) {
 }
 
 function hashUserData (res, user) {
-  return axios.post('http://cooper-microservices:5000/auth/signup', user)
-    .then(function (response) {
-      return sendNewUser(res, response.data)
-    })
-    .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
-    })
+  return sendNewUser(res, user)
 }
 
 function sendNewUser (res, user) {
   // Save this user to the database
   return axios.post('http://cooper-database-api:5432/users', user)
     .then(function (response) {
+      user.accessToken = sha.sha256()
       return res.status(201).send(response.data)
     })
     .catch(function (error) {
