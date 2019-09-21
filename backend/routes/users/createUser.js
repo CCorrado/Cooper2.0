@@ -3,6 +3,11 @@
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
 
+const urlJoin = require('url-join')
+
+const env = require('../../env')
+const DB_BASE_URL = env('DB_BASE_URL')
+
 /**
  * @typedef ErrorResponse
  * @property {[integer]} statusCode
@@ -68,12 +73,13 @@ module.exports = function (req, res) {
 }
 
 function hashUserData (res, user) {
+  // some hash functions here.
   return sendNewUser(res, user)
 }
 
 function sendNewUser (res, user) {
   // Save this user to the database
-  return axios.post('http://cooper-database-api:5432/users', user)
+  return axios.post(urlJoin(DB_BASE_URL, 'users'), user)
     .then(function (response) {
       return res.status(201).send(response.data)
     })

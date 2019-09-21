@@ -1,6 +1,10 @@
 'use strict'
 
 const axios = require('axios')
+const urlJoin = require('url-join')
+
+const env = require('../../env')
+const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
  * @typedef ErrorResponse
@@ -27,7 +31,7 @@ const axios = require('axios')
  * @security JWT
  */
 module.exports = function (req, res) {
-  return axios.get('http://cooper-database-api:5432/users/' + req.query.id)
+  return axios.get(urlJoin(DB_BASE_URL, 'users', req.query.id))
     .then(function (response) {
       return res.status(200).send(response.data)
     })
