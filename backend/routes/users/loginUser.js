@@ -1,10 +1,11 @@
 'use strict'
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 const urlJoin = require('url-join')
 
 const env = require('../../env')
+const OAuthErr = require('../../errors/OAuthError')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
@@ -65,22 +66,23 @@ function getUserObjectIfExists (res, user) {
 function hashUserData (res, user, pwAttempted, userToken) {
   user.pwAttempted = pwAttempted
   // signin session
-  // 1.hash/salt data
-  // 2.require data from db
-  // 3.compare data
-  // 4.if expired renew data in db.
-  // 5.
-  return axios.post('http://cooper-microservices:5000/auth/signin', user)
-    .then(function (response) {
-      response.data.accessToken = userToken.accessToken
-      response.data.tokenType = userToken.tokenType
-      response.data.expiresIn = userToken.expiresIn
-      response.data.refreshToken = userToken.refreshToken
-      return sendLoginUser(res, response.data)
-    })
-    .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
-    })
+  // 1.require data from db
+  // 2.compare data
+  // 3.if yes refresh token.
+  // 4.else return 403
+  let hashedUserPWD = bcrypt.hashSync(pwAttempted, 10)
+  if (bcrypt.compareSync(user.password, pwAttempted))
+  {
+    //check Token
+    // if Token yes
+      return sendLoginUser(res, user)
+      // and refresh
+    // else
+    // require refresh and require re-sign-in
+  }
+  else 
+    return OAuthErr.makeInvalidCredentialsError()
+
 }
 
 function sendLoginUser (res, user) {
