@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 5%;
+}
+
+.submit-button {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  align-self: center;
+}
+
+.password-input {
+  color: #303030;
+  font-size: 14pt;
+  align-self: flex-start;
+  background: transparent;
+  border: #303030 solid 1pt;
+  border-radius: 0;
+  width: 100%;
+  padding: .5rem;
+  margin-top: 5% !important;
+  box-sizing: border-box;
+}
+
+.password-input input {
+  color: #303030;
+  font-size: 14pt;
+}
+
+.password-input label {
+  color: #303030;
+  font-size: 14pt;
+}
+
+.error-border {
+  @extend .password-input;
+  border: #b60808 solid 1.25pt;
+}
+
+.error {
+  color: #b60808;
+  font-size: 8pt;
+  padding: 5%;
+}

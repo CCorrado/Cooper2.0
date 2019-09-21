@@ -18,6 +18,7 @@ function NavigationProvider ({ children, history }) {
   }
 
   const goBackToPrevious = () => {
+    // eslint-disable-next-line react/prop-types
     history.goBack()
   }
 

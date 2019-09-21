@@ -1,0 +1,61 @@
+.main {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  color: #303030;
+  font-size: 24pt;
+  line-height: 1rem;
+}
+
+.error {
+  color: #b60808;
+  font-size: 8pt;
+  padding: 5%;
+}
+
+.subtitle {
+  color: #808080;
+  font-size: 20pt;
+  text-align: center;
+  margin-top: 5%;
+  width: auto;
+
+  &--left-align {
+    @extend .subtitle;
+    text-align: left;
+    margin-top: 5%;
+  }
+}
+
+.subtitle-grey {
+  color: #303030;
+  font-size: 16pt;
+  text-align: left;
+  margin-top: 5%;
+  width: auto;
+}
+
+.section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &--top {
+    @extend .section;
+    margin-top: 5%;
+  }
+}
+
+.vh {
+  height: 1px;
+  width: 100%;
+  background-color: #282c34;
+  color: #282c34;
+  align-self: center;
+  margin-right: 5%;
+  margin-left: 5%;
+  border: 0;
+}
