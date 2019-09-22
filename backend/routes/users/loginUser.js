@@ -65,28 +65,29 @@ function getUserObjectIfExists (res, user) {
 
 function hashUserData (res, user, pwAttempted, userToken) {
   user.pwAttempted = pwAttempted
-  // signin session
-  // 1.require data from db
-  // 2.compare data
-  // 3.if yes refresh token.
-  // 4.else return 403
+  //signin session
+  //1.require data from db
+  //2.compare data
+  //3.if yes refresh token.
+  //4.else return 403
   let hashedUserPWD = bcrypt.hashSync(pwAttempted, 10)
   if (bcrypt.compareSync(user.password, pwAttempted))
   {
     //check Token
-    // if Token yes
-      return sendLoginUser(res, user)
-      // and refresh
-    // else
-    // require refresh and require re-sign-in
+    //if Token yes
+    return sendLoginUser(res, user)
+    //and refresh
+    //else
+    //refresh token and require re-sign-in
   }
-  else 
+  else
+  {
     return OAuthErr.makeInvalidCredentialsError()
-
+  }
 }
 
 function sendLoginUser (res, user) {
-  // Save this user to the database
+  //Save this user to the database
   return axios.post(urlJoin(DB_BASE_URL, 'users', 'newSession'), user)
     .then(function (response) {
       return res.status(200).send(response.data)
