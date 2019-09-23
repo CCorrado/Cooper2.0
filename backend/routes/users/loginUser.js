@@ -41,7 +41,7 @@ module.exports = function (req, res) {
     'refresh_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
   }
 
-  const newRequest = {
+  let newRequest = {
     'username': userRequest.username,
     'password': userRequest.password,
     'accessToken': userToken.access_token,
@@ -70,7 +70,6 @@ function hashUserData (res, user, pwAttempted, userToken) {
   //2.compare data
   //3.if yes refresh token.
   //4.else return 403
-  let hashedUserPWD = bcrypt.hashSync(pwAttempted, 10)
   if (bcrypt.compareSync(user.password, pwAttempted))
   {
     //check Token
