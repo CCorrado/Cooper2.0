@@ -135,7 +135,6 @@ export default function Login ({ onSubmit }) {
 
   async function loginUser (emailVal, passwordVal) {
     try {
-      console.log(emailVal, passwordVal)
       await userService.login(emailVal, passwordVal)
       setError(false)
       // TODO (corrado) store the response in the local frontend database
