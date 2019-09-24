@@ -2,6 +2,11 @@
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
+const urlJoin = require('url-join')
+
+const env = require('../../env')
+const DB_BASE_URL = env('DB_BASE_URL')
+
 /**
  * @typedef ErrorResponse
  * @property {[integer]} statusCode
@@ -48,37 +53,28 @@ module.exports = function (req, res) {
 }
 
 function getUserObjectIfExists (res, user) {
-  return axios.get('http://cooper-database-api:5432/users?username=' + user.username)
+  return axios.get(urlJoin(DB_BASE_URL, 'users?username=', user.username))
     .then(function (response) {
       return hashUserData(res, response.data, user.password, user)
     })
     .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
+      return res.status(400).send(error.response.data)
     })
 }
 
 function hashUserData (res, user, pwAttempted, userToken) {
   user.pwAttempted = pwAttempted
-  return axios.post('http://cooper-microservices:5000/auth/signin', user)
-    .then(function (response) {
-      response.data.accessToken = userToken.accessToken
-      response.data.tokenType = userToken.tokenType
-      response.data.expiresIn = userToken.expiresIn
-      response.data.refreshToken = userToken.refreshToken
-      return sendLoginUser(res, response.data)
-    })
-    .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
-    })
+  // TODO Bcrypt pw
+  return sendLoginUser(res, userToken)
 }
 
 function sendLoginUser (res, user) {
   // Save this user to the database
-  return axios.post('http://cooper-database-api:5432/users/newSession', user)
+  return axios.post(urlJoin(DB_BASE_URL, 'users', 'newSession'), user)
     .then(function (response) {
       return res.status(200).send(response.data)
     })
     .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
+      return res.status(400).send(error.response.data)
     })
 }
