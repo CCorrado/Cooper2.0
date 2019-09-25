@@ -73,26 +73,21 @@ function hashUserData (res, user, pwAttempted, userToken) {
   if (bcrypt.compareSync(user.password, pwAttempted)) {
     // check Token
     // if Token yes
-    if (jwt.verify(user.refresh_token, userToken.refresh_token))
-    {
-      return sendLoginUser(res, user)
-    }
-    else
-    {
+    if (jwt.verify(user.refresh_token, userToken.refresh_token)) {
+      return sendLoginUser(res, user)}
+    else {
       user.refresh_token = userToken.refresh_token
-      return res.redirect(307, '/users/login')
-    }
+      return res.redirect(307, '/users/login')}
     // and refresh
     // else
     // refresh token and require re-sign-in
   }
   else {
-    return OAuthErr.makeInvalidCredentialsError()
-  }
-} 
+    return OAuthErr.makeInvalidCredentialsError()}
+}
 
 function sendLoginUser (res, user) {
-  //Save this user to the database
+  // Save this user to the database
   return axios.post(urlJoin(DB_BASE_URL, 'users', 'newSession'), user)
     .then(function (response) {
       return res.status(200).send(response.data)
