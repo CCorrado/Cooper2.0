@@ -73,7 +73,7 @@ module.exports = function (req, res) {
 }
 
 function hashUserData (res, user) {
-  //some hash functions here.
+  // some hash functions here.
   let tmpPWD = user.password
   user.password = bcrypt.hashSync(tmpPWD, 10)
   if (bcrypt.compareSync(user.password, tmpPWD))
@@ -83,17 +83,17 @@ function hashUserData (res, user) {
   else
   {
     return res.status(403)
+  }
 }
 
 function sendNewUser (res, user) {
-  //Save this user to the database
+  // Save this user to the database
   return axios.post(urlJoin(DB_BASE_URL, 'users'), user)
     .then(function (response) {
-      //make sure returning token here. token format TBD
+      // make sure returning token here. token format TBD
       return res.status(201).send(response.data)
     })
     .catch(function (error) {
       return res.status(error.response.status).send(error.response.data)
     })
-  }
 }

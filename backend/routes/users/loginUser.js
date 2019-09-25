@@ -65,15 +65,14 @@ function getUserObjectIfExists (res, user) {
 
 function hashUserData (res, user, pwAttempted, userToken) {
   user.pwAttempted = pwAttempted
-  //signin session
-  //1.require data from db
-  //2.compare data
-  //3.if yes refresh token.
-  //4.else return 403
-  if (bcrypt.compareSync(user.password, pwAttempted))
-  {
-    //check Token
-    //if Token yes
+  // signin session
+  // 1.require data from db
+  // 2.compare data
+  // 3.if yes refresh token.
+  // 4.else return 403
+  if (bcrypt.compareSync(user.password, pwAttempted)) {
+    // check Token
+    // if Token yes
     if (jwt.verify(user.refresh_token, userToken.refresh_token))
     {
       return sendLoginUser(res, user)
@@ -83,15 +82,14 @@ function hashUserData (res, user, pwAttempted, userToken) {
       user.refresh_token = userToken.refresh_token
       return res.redirect(307, '/users/login')
     }
-    //and refresh
-    //else
-    //refresh token and require re-sign-in
+    // and refresh
+    // else
+    // refresh token and require re-sign-in
   }
-  else
-  {
+  else {
     return OAuthErr.makeInvalidCredentialsError()
   }
-}
+} 
 
 function sendLoginUser (res, user) {
   //Save this user to the database

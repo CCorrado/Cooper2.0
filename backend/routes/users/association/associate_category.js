@@ -2,7 +2,7 @@
 
 const urlJoin = require('url-join')
 const axios = require('axios')
-
+const jwt = require('jsonwebtoken')
 const error = require('../../../errors/OAuthError')
 const env = require('../../../env')
 const DB_BASE_URL = env('DB_BASE_URL')
