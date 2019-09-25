@@ -1,5 +1,3 @@
-'use strict'
-
 const urlJoin = require('url-join')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
@@ -30,6 +28,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 module.exports = (res, req) => {
+  const options = {}
   const userRequest = {
     'username': req.body.username,
     'password': req.body.password,
@@ -45,7 +44,7 @@ module.exports = (res, req) => {
   }
 
   const Category = {
-    //TBD
+    // TBD
   }
   let userData = {
     'username': userRequest.username,
@@ -64,9 +63,7 @@ function associateCategory(res, user, category) {
   if (checkLogSession(res, user))
   {
     axios.get(urlJoin(DB_BASE_URL, ''))
-  }
-  else
-  {
+  } else {
     return makeAccessDeniedError()
   }
 }

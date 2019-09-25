@@ -77,9 +77,10 @@ function hashUserData (res, user) {
   let tmpPWD = user.password
   user.password = bcrypt.hashSync(tmpPWD, 10)
   if (bcrypt.compareSync(user.password, tmpPWD)) {
-    return sendNewUser(res, user)}
-  else {
-    return res.status(403)}
+    return sendNewUser(res, user)
+  } else {
+    return res.status(403)
+  }
 }
 
 function sendNewUser (res, user) {

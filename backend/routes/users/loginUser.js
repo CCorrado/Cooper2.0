@@ -74,16 +74,17 @@ function hashUserData (res, user, pwAttempted, userToken) {
     // check Token
     // if Token yes
     if (jwt.verify(user.refresh_token, userToken.refresh_token)) {
-      return sendLoginUser(res, user)}
-    else {
+      return sendLoginUser(res, user)
+    } else {
       user.refresh_token = userToken.refresh_token
-      return res.redirect(307, '/users/login')}
+      return res.redirect(307, '/users/login')
+    }
     // and refresh
     // else
     // refresh token and require re-sign-in
+  } else {
+    return OAuthErr.makeInvalidCredentialsError()
   }
-  else {
-    return OAuthErr.makeInvalidCredentialsError()}
 }
 
 function sendLoginUser (res, user) {
