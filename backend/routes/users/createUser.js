@@ -8,6 +8,11 @@ const urlJoin = require('url-join')
 const env = require('../../env')
 const DB_BASE_URL = env('DB_BASE_URL')
 
+const urlJoin = require('url-join')
+
+const env = require('../../env')
+const DB_BASE_URL = env('DB_BASE_URL')
+
 /**
  * @typedef ErrorResponse
  * @property {[integer]} statusCode
