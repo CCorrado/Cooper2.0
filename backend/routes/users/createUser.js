@@ -2,7 +2,7 @@
 
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
-
+const bcrypt = require('bcrypt')
 const urlJoin = require('url-join')
 
 const env = require('../../env')
@@ -58,7 +58,7 @@ module.exports = function (req, res) {
     'refresh_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
   }
 
-  const newRequest = {
+  let newRequest = {
     'username': userRequest.username,
     'password': userRequest.password,
     'name': userRequest.name,
@@ -69,13 +69,25 @@ module.exports = function (req, res) {
     'refreshToken': userToken.refresh_token
   }
 
-  sendNewUser(res, newRequest)
+  hashUserData(res, newRequest)
+}
+
+function hashUserData (res, user) {
+  // some hash functions here.
+  let tmpPWD = user.password
+  user.password = bcrypt.hashSync(tmpPWD, 10)
+  if (bcrypt.compareSync(user.password, tmpPWD)) {
+    return sendNewUser(res, user)
+  } else {
+    return res.status(403)
+  }
 }
 
 function sendNewUser (res, user) {
   // Save this user to the database
   return axios.post(urlJoin(DB_BASE_URL, 'users'), user)
     .then(function (response) {
+      // make sure returning token here. token format TBD
       return res.status(201).send(response.data)
     })
     .catch(function (error) {

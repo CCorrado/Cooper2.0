@@ -1,10 +1,11 @@
 'use strict'
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 const urlJoin = require('url-join')
 
 const env = require('../../env')
+const OAuthErr = require('../../errors/OAuthError')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
@@ -40,7 +41,7 @@ module.exports = function (req, res) {
     'refresh_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
   }
 
-  const newRequest = {
+  let newRequest = {
     'username': userRequest.username,
     'password': userRequest.password,
     'accessToken': userToken.access_token,
@@ -64,8 +65,26 @@ function getUserObjectIfExists (res, user) {
 
 function hashUserData (res, user, pwAttempted, userToken) {
   user.pwAttempted = pwAttempted
-  // TODO Bcrypt pw
-  return sendLoginUser(res, userToken)
+  // signin session
+  // 1.require data from db
+  // 2.compare data
+  // 3.if yes refresh token.
+  // 4.else return 403
+  if (bcrypt.compareSync(user.password, pwAttempted)) {
+    // check Token
+    // if Token yes
+    if (jwt.verify(user.refresh_token, userToken.refresh_token)) {
+      return sendLoginUser(res, user)
+    } else {
+      user.refresh_token = userToken.refresh_token
+      return res.redirect(307, '/users/login')
+    }
+    // and refresh
+    // else
+    // refresh token and require re-sign-in
+  } else {
+    return OAuthErr.makeInvalidCredentialsError()
+  }
 }
 
 function sendLoginUser (res, user) {
