@@ -1,16 +1,20 @@
 'use strict'
 
 const router = require('express-promise-router')()
-
+const category = require('./users/association/associateCategory')
+const major = require('./users/association/associateMajor')
+const range = require('./users/association/associateRange')
+const institute = require('./users/association/associateInstitute')
 const checkAccessToken = require('../middleware/checkAccessToken')
 
 // User Routes
 router.use('/users/getUser', checkAccessToken, require('./users/getUser'))
 router.use('/users/register', require('./users/createUser'))
 router.use('/users/login', require('./users/loginUser'))
-router.use('/users/association/associate_range', require('./users/association/associate_range'))
-router.use('/users/association/associate_category', require('./users/association/associate_category'))
-router.use('/users/association/associate_major', require('./users/association/associate_major'))
-router.use('/users/association/associate_insititute', require('./users/association/associate_insititute'))
+
+router.post('/users/association/range', range.postRange)
+router.post('/users/association/category', category.postCategory)
+router.post('/users/association/major', major.postMajor)
+router.post('/users/association/institute', institute.postInstitute)
 
 module.exports = router

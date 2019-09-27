@@ -3,7 +3,7 @@
 const OAuthError = require('../errors/OAuthError')
 const jwt = require('jsonwebtoken')
 
-module.exports = function (req, res, next) {
+function check (req, res, next) {
   if (req.headers.hasOwnProperty('authorization') === false) {
     throw OAuthError.makeAccessDeniedError()
   }
@@ -30,3 +30,5 @@ module.exports = function (req, res, next) {
 
   next()
 }
+
+module.exports = check

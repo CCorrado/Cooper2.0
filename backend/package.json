@@ -2,16 +2,19 @@
   "name": "cooper_2.0",
   "version": "1.0.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "code-style:fix": "./node_modules/.bin/standard --fix",
     "test": "ENV=mock ./node_modules/.bin/istanbul cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --reporter mochawesome --reporter-options reportDir=coverage \"./tests/unit/**/*.test.js\" --recursive --timeout 5000",
     "test:code-style": "./node_modules/.bin/check-node-version --node \">=10\" && ./node_modules/.bin/standard | ./node_modules/.bin/snazzy",
     "test:file": "ENV=mock ./node_modules/mocha/bin/_mocha",
-    "watch": "nodemon -L app.js"
+    "watch": "nodemon -L index.js"
   },
   "dependencies": {
+    "nodemon": "^1.19.2",
     "axios": "^0.18.1",
+    "bcrypt": "^3.0.6",
     "bluebird": "^3.5.4",
     "body-parser": "latest",
     "cookie-parser": "^1.4.4",

@@ -29,7 +29,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  * @returns {ErrorResponse.model}  default - HttpError - User not found
  * @security JWT
  */
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
   return axios.get(urlJoin(DB_BASE_URL, 'users', req.query.id))
     .then(function (response) {
       return res.status(200).send(response.data)
