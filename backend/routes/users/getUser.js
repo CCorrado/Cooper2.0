@@ -4,6 +4,7 @@ const axios = require('axios')
 const urlJoin = require('url-join')
 const env = require('../../env')
 const DB_BASE_URL = env('DB_BASE_URL')
+const { HttpError } = require('../../errors')
 
 /**
  * @typedef ErrorResponse
@@ -29,12 +30,12 @@ const DB_BASE_URL = env('DB_BASE_URL')
  * @returns {ErrorResponse.model}  default - HttpError - User not found
  * @security JWT
  */
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
   return axios.get(urlJoin(DB_BASE_URL, 'users', req.query.id))
     .then(function (response) {
-      return res.status(200).send(response.data)
+      return res.status(200).json(response.data)
     })
     .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
+      next(new HttpError(400, error))
     })
 }

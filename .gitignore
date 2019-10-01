@@ -114,3 +114,4 @@ frontend/node_modules/*
 .settings/
 .project
 .classpath
+backend/coverage/*

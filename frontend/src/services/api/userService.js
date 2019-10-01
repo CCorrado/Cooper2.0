@@ -1,7 +1,7 @@
 const baseUrl = process.env.REACT_APP_API_BASE_URL
 
 const paths = {
-  auth: { login: '/user/login', register: '/user/register' }
+  auth: { login: '/users/login', register: '/users/register' }
 }
 
 function login (email, password) {

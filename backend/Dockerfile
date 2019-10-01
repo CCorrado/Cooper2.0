@@ -19,4 +19,4 @@ USER nodejs
 
 EXPOSE 9000
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["npm", "run", "watch"]

@@ -8,7 +8,6 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const expressSwagger = require('express-swagger-generator')(app)
-const port = process.env.PORT || 9000
 
 // Parse JSON request bodies
 app.use(bodyParser.json())
@@ -52,4 +51,4 @@ const options = {
 
 expressSwagger(options)
 
-app.listen(port)
+exports = module.exports = app

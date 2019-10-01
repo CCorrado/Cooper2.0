@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const urlJoin = require('url-join')
 
 const env = require('../../env')
+const { HttpError } = require('../../errors')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
@@ -42,7 +43,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  * @returns {RegisterResponse.model} 200 - A New User object
  * @returns {ErrorResponse.model}  default - HttpError - User not found
  */
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
   const options = {}
   const userRequest = {
     'username': req.body.username,
@@ -68,29 +69,36 @@ module.exports = function (req, res) {
     'expiresIn': userToken.expires_in,
     'refreshToken': userToken.refresh_token
   }
-
-  hashUserData(res, newRequest)
+  hashUserData(res, newRequest, next)
 }
 
-function hashUserData (res, user) {
+function hashUserData (res, user, next) {
   // some hash functions here.
   let tmpPWD = user.password
   user.password = bcrypt.hashSync(tmpPWD, 10)
   if (bcrypt.compareSync(user.password, tmpPWD)) {
-    return sendNewUser(res, user)
+    return sendNewUser(res, user, next)
   } else {
-    return res.status(403)
+    next(new HttpError(400, 'Password is invalid'))
   }
 }
 
-function sendNewUser (res, user) {
+function sendNewUser (res, user, next) {
   // Save this user to the database
   return axios.post(urlJoin(DB_BASE_URL, 'users'), user)
     .then(function (response) {
       // make sure returning token here. token format TBD
-      return res.status(201).send(response.data)
+      return res.status(201).json({
+        username: response.data.username,
+        name: response.data.name,
+        role: response.data.role,
+        accessToken: response.data.accessToken,
+        tokenType: response.data.tokenType,
+        expiresIn: response.data.expiresIn,
+        refreshToken: response.data.refreshToken
+      })
     })
     .catch(function (error) {
-      return res.status(error.response.status).send(error.response.data)
+      next(new HttpError(400, error))
     })
 }
