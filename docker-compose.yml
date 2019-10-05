@@ -13,7 +13,7 @@ services:
       - MYSQL_DATABASE=cooper
       - MYSQL_PASSWORD=root
     ports:
-      - 3306:3306
+      - '3306:3306'
   cooper-database-api:
     build:
       context: ./database
@@ -23,7 +23,7 @@ services:
     env_file:
       - database/db.env
     ports:
-      - 5432:5432
+      - '5000:8080'
   cooper-backend:
     container_name: cooper-backend
     build:
@@ -33,7 +33,7 @@ services:
       - './backend/:/usr/src/app'
       - '/usr/src/app/node_modules'
     ports:
-      - 9000:9000
+      - '9000:9000'
     command: ["npm", "start"]
   cooper-frontend:
     container_name: cooper-frontend
