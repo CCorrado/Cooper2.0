@@ -3,9 +3,9 @@
 const cors = require('cors')
 const env = require('../env')
 
-const whitelist = ['http://localhost']
+const whitelist = ['http://localhost', 'http://localhost:3000']
 
-module.exports = cors({
+const config = cors({
   origin: (origin, callback) => {
     if (!origin || (env('ENV').toUpperCase() !== 'PROD' && whitelist.indexOf(origin) !== -1)) {
       return callback(null, true)
@@ -15,3 +15,5 @@ module.exports = cors({
     }
   }
 })
+
+module.exports = config

@@ -1,7 +1,6 @@
 'use strict'
 
 const cookieParser = require('cookie-parser')
-const helmet = require('helmet')
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -14,15 +13,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(cookieParser())
-app.use(helmet())
+app.use(require('./middleware/cors'))
 
 // Set up routes
 app.use(require('./routes'))
 
 // Set up error handler
 app.use(require('./middleware/errorHandler'))
-
-app.use(require('./middleware/cors'))
 
 const options = {
   swaggerDefinition: {
