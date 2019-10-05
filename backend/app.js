@@ -22,6 +22,8 @@ app.use(require('./routes'))
 // Set up error handler
 app.use(require('./middleware/errorHandler'))
 
+app.use(require('./middleware/cors'))
+
 const options = {
   swaggerDefinition: {
     info: {

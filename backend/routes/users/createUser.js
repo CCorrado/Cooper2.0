@@ -73,14 +73,10 @@ module.exports = function (req, res, next) {
 }
 
 function hashUserData (res, user, next) {
-  // some hash functions here.
+  // hash the user's password
   let tmpPWD = user.password
   user.password = bcrypt.hashSync(tmpPWD, 10)
-  if (bcrypt.compareSync(user.password, tmpPWD)) {
-    return sendNewUser(res, user, next)
-  } else {
-    next(new HttpError(400, 'Password is invalid'))
-  }
+  return sendNewUser(res, user, next)
 }
 
 function sendNewUser (res, user, next) {
@@ -98,7 +94,7 @@ function sendNewUser (res, user, next) {
         refreshToken: response.data.refreshToken
       })
     })
-    .catch(function (error) {
-      next(new HttpError(400, error))
+    .catch(function () {
+      next(new HttpError(400, 'Failed to create the user'))
     })
 }

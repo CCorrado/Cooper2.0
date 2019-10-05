@@ -23,7 +23,7 @@ describe('Assert User controller functions normally', () => {
   })
 
   it('Should fail to get user', () => {
-    nock('http://cooper-database-api:5000/').get('/users/4').delay(100).reply(200, { 'user': { id: '4' } })
+    nock('http://cooper-database-api:8080/').get('/users/4').delay(100).reply(200, { 'user': { id: '4' } })
     try {
       return request(app)
         .get('/users/getUser')
@@ -38,7 +38,7 @@ describe('Assert User controller functions normally', () => {
   })
 
   it('Should login the user', () => {
-    nock('http://cooper-database-api:5000/').get('/users?username=john@doe.com').reply(200, {
+    nock('http://cooper-database-api:8080/').get('/users?username=john@doe.com').reply(200, {
       'username': 'john@doe.com',
       'password': 'superSecretPassword',
       'name': 'John Doe',
@@ -49,7 +49,7 @@ describe('Assert User controller functions normally', () => {
       'refreshToken': 'someUniqueToken'
     })
 
-    nock('http://cooper-database-api:5000/').post('/users/newSession').reply(201, {
+    nock('http://cooper-database-api:8080/').post('/users/newSession').reply(201, {
       'username': 'john@doe.com',
       'password': 'superSecretPassword',
       'name': 'John Doe',
@@ -84,7 +84,7 @@ describe('Assert User controller functions normally', () => {
   })
 
   it('Should register the user', () => {
-    nock('http://cooper-database-api:5000/').post('/users').reply(201, {
+    nock('http://cooper-database-api:8080/').post('/users').reply(201, {
       'username': 'john@doe.com',
       'password': 'superSecretPassword',
       'name': 'John Doe',

@@ -28,7 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "request": "^2.88.0",
     "url-join": "^4.0.1",
-    "uuid": "latest"
+    "uuid": "latest",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",

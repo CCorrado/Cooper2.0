@@ -6,7 +6,6 @@ const urlJoin = require('url-join')
 
 const { HttpError } = require('../../errors')
 const env = require('../../env')
-const OAuthErr = require('../../errors/OAuthError')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
@@ -59,32 +58,21 @@ function getUserObjectIfExists (res, user, next) {
     .then(function (response) {
       return hashUserData(res, response.data, user.password, user, next)
     })
-    .catch(function (error) {
-      next(new HttpError(400, error))
+    .catch(function () {
+      next(new HttpError(400, 'Failed to login: bad username or password'))
     })
 }
 
 function hashUserData (res, user, pwAttempted, userToken, next) {
-  user.pwAttempted = pwAttempted
-  // signin session
-  // 1.require data from db
-  // 2.compare data
-  // 3.if yes refresh token.
-  // 4.else return 403
-  if (bcrypt.compareSync(user.password, pwAttempted)) {
-    // check Token
-    // if Token yes
-    if (jwt.verify(user.refresh_token, userToken.refresh_token)) {
-      return sendLoginUser(res, user, next)
-    } else {
-      user.refresh_token = userToken.refresh_token
-      return res.redirect(307, '/users/login')
-    }
-    // and refresh
-    // else
-    // refresh token and require re-sign-in
+  // check pw against db stored pw
+  if (bcrypt.compareSync(pwAttempted, user.password)) {
+    user.accessToken = userToken.accessToken
+    user.refreshToken = userToken.refreshToken
+    user.tokenType = userToken.tokenType
+    user.expiresIn = userToken.expiresIn
+    return sendLoginUser(res, user, next)
   } else {
-    return OAuthErr.makeInvalidCredentialsError()
+    next(new HttpError(400, 'Failed to login: bad username or password'))
   }
 }
 
@@ -102,7 +90,7 @@ function sendLoginUser (res, user, next) {
         refreshToken: response.data.refreshToken
       })
     })
-    .catch(function (error) {
-      next(new HttpError(400, error))
+    .catch(function () {
+      next(new HttpError(400, 'Failed to create new user session'))
     })
 }
