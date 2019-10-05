@@ -15,7 +15,9 @@ services:
     ports:
       - 3306:3306
   cooper-database-api:
-    build: database
+    build:
+      context: ./database
+      dockerfile: Dockerfile
     depends_on:
       - cooper-mysql
     env_file:

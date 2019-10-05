@@ -2,7 +2,7 @@
 
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const urlJoin = require('url-join')
 
 const env = require('../../env')

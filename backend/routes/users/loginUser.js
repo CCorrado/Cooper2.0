@@ -1,7 +1,7 @@
 'use strict'
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const urlJoin = require('url-join')
 
 const { HttpError } = require('../../errors')

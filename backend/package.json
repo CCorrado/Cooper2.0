@@ -14,7 +14,7 @@
   "dependencies": {
     "nodemon": "^1.19.2",
     "axios": "^0.18.1",
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.4",
     "body-parser": "latest",
     "cookie-parser": "^1.4.4",

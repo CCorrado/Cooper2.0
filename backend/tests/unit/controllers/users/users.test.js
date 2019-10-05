@@ -7,7 +7,7 @@ const importFresh = require('import-fresh')
 const request = require('supertest')
 const nock = require('nock')
 const sinon = require('sinon')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 describe('Assert User controller functions normally', () => {
