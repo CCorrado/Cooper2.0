@@ -1,4 +1,4 @@
-package com.cooper.database.model
+package com.cooper.database.model.network
 
 import com.google.gson.annotations.SerializedName
 import java.util.*

@@ -35,7 +35,7 @@ module.exports = function (req, res, next) {
     .then(function (response) {
       return res.status(200).json(response.data)
     })
-    .catch(function (error) {
-      next(new HttpError(400, error))
+    .catch(function () {
+      next(new HttpError(400, 'Failed to find the user'))
     })
 }

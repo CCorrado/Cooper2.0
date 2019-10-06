@@ -10,7 +10,7 @@ function login (email, password) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ username: email, password })
   }).then(res => res.json())
 }
 
@@ -20,7 +20,9 @@ function register (email, password, profile) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ email, password, profile })
+    body: JSON.stringify({
+      username: email, password, name: `${profile.firstName} ${profile.lastName}`, role: 'student'
+    })
   }).then(res => res.json())
 }
 
