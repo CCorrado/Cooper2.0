@@ -4,7 +4,7 @@ import com.cooper.database.error.ObjectNotCreated
 import com.cooper.database.error.ObjectNotFound
 import com.cooper.database.model.Session
 import com.cooper.database.model.User
-import com.cooper.database.model.UserSession
+import com.cooper.database.model.network.UserSession
 import com.cooper.database.service.session.SessionService
 import com.cooper.database.service.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
