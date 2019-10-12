@@ -15,6 +15,6 @@ afterEach(() => {
 })
 
 it('should render', () => {
-  const div = wrapper.find('div')
+  const div = wrapper.find('NavBar')
   expect(div.exists()).toBeTruthy()
 })
