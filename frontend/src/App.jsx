@@ -5,6 +5,7 @@ import { Navigation } from './Components/Navigation/NavigationContext'
 import Login from './Components/Authentication/Login'
 import Registration from './Components/Authentication/Registration'
 import Home from './Components/Home'
+import mygrid from './Components/Scheduler/mygrid'
 
 function App () {
   return (
@@ -13,7 +14,8 @@ function App () {
         <Navigation>
           <Route path='/login' render={() => <Login onSubmit={onSubmitLogin} />} />
           <Route path='/registration' render={() => <Registration onSubmit={onSubmitRegistration} />} />
-          <Route path='/home' component={Home} />
+          <Route path='/' component={Home} />
+          <Route path='/scheduler' component={mygrid} />
         </Navigation>
       </Switch>
     </BrowserRouter>
