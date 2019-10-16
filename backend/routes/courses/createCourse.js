@@ -63,3 +63,5 @@ function addCourse (req, res, next) {
       next(new HttpError(400, 'Failed to create course'))
     })
 }
+
+module.export = { addCourse }
