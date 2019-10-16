@@ -11,7 +11,7 @@ const range = require('./users/association/associateRange')
 const institute = require('./users/association/associateInstitute')
 const checkAccessToken = require('../middleware/checkAccessToken')
 
-// const course = require('./courses/createCourse')
+const courses = require('./courses/createCourse')
 
 // User Routes
 router.get('/users/getUser', checkAccessToken, getUser)
@@ -23,5 +23,5 @@ router.post('/users/association/category', category.postCategory)
 router.post('/users/association/major', major.postMajor)
 router.post('/users/association/institute', institute.postInstitute)
 
-// router.post('/courses/add', course.addCourse)
+router.post('/courses/add', courses.addCourse)
 module.exports = router

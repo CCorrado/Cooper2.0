@@ -64,4 +64,4 @@ function addCourse (req, res, next) {
     })
 }
 
-module.export = { addCourse }
+module.exports = { addCourse }
