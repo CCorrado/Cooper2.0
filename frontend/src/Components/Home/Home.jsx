@@ -1,63 +1,67 @@
 import React from 'react'
 import NavBar from '../common/NavBar/NavBar'
+import chris from '../../images/chris.png'
+import aditya from '../../images/aditya1.jpg'
+import dariel from '../../images/dariel.jpg'
+import sam from '../../images/sam.jpeg'
 
 export default function Home () {
   return (
-    <div className='container'>
+    <div>
       <NavBar />
-      <div className='Main'>
-        <h2 className='text-center'>Objective</h2>
-        <h4 className='text-center'>
+      <div>
+        <h2>Objective</h2>
+        <h4>
           We aim to make the task of choosing and registering for classes as smooth as possible.
         </h4>
         <hr />
-        <h2 className='text-center'>Meet The Team</h2>
+        <h2>Meet The Team</h2>
         <hr />
-        <div className='row'>
-          <div className='column'>
-            <div className='card'>
-              <img src='aditya1.jpg' alt='Aditya Munot' style={{ width: '100%' }} />
+        <div>
+          <div>
+            <div>
+              <img src={aditya} alt='Aditya Munot' style={{ width: '50%' }} />
               <div className='container'>
                 <h3>Aditya Munot</h3>
-                <p className='title'>Co-Founder</p>
+                <p>Co-Founder</p>
                 <p>
-                  <button className='button'>Contact</button>
+                  <button type='button'>Contact</button>
                 </p>
               </div>
             </div>
           </div>
-          <div className='column'>
-            <div className='card'>
-              <img src='dariel.jpg' alt='Dariel Bobadilla' style={{ width: '100%' }} />
-              <div className='container'>
+          <div>
+            <div>
+              <img src={dariel} alt='Dariel Bobadilla' style={{ width: '50%' }} />
+              <div>
                 <h3>Dariel Bobadilla</h3>
-                <p className='title'>Co-Founder</p>
+                <p>Co-Founder</p>
                 <p>
-                  <button className='button'>Contact</button>
+                  <button type='button'>Contact</button>
                 </p>
               </div>
             </div>
           </div>
-          <div className='column'>
-            <div className='card'>
-              <img src='corrado.jpg' alt='Chris Corrado' style={{ width: '100%' }} />
-              <div className='container'>
+          <div>
+            <div>
+              <img src={chris} alt='Chris Corrado' style={{ width: '50%' }} />
+              <div>
                 <h3>Chris Corrado</h3>
-                <p className='title'>Co-Founder</p>
+                <p>Co-Founder</p>
                 <p>
-                  <button className='button'>Contact</button>
+                  <button type='button'>Contact</button>
                 </p>
               </div>
             </div>
           </div>
-          <div className='column'>
-            <div className='card'>
-              <img src='sam.jpg' alt='Ziyu Zhang' style={{ width: '100%' }} />
-              <div className='container'>
+          <div>
+            <div>
+              <img src={sam} alt='Ziyu Zhang' style={{ width: '50%' }} />
+              <div>
                 <h3>Ziyu Zhang</h3>
-                <p className='title'>Co-Founder</p>
+                <p>Co-Founder</p>
                 <p>
-                  <button className='button'>Contact</button>
+                  <button type='button'>Contact</button>
                 </p>
               </div>
             </div>

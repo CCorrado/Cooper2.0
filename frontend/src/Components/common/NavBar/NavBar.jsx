@@ -14,32 +14,31 @@ export default function NavBar () {
   }
 
   return (
-    <nav className='navbar fixed-top navbar-expand-sm navbar-dark bg-transparent mb-4'>
+    <nav>
       <div className='container'>
-        <Link className='navbar-brand' to='/'>Mr. Cooper</Link>
-        <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav'>
-          <span className='navbar-toggler-icon' />
+        <Link to='/'>Mr. Cooper</Link>
+        <button type='button' data-toggle='collapse' data-target='#navbarNav'>
+          <span />
         </button>
-        <div className='collapse navbar-collapse' id='navbarNav'>
-          <ul className='navbar-nav ml-auto'>
-            <li className='nav-item'>
-              <Link className='nav-link font-weight-normal text-white' to='/map'>Map</Link>
+        <div id='navbarNav'>
+          <ul>
+            <li>
+              <Link to='/map'>Map</Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link font-weight-normal text-white' to='/grid'>Scheduler</Link>
+            <li>
+              <Link to='/grid'>Scheduler</Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link font-weight-normal text-white' to='/explore'>Explore Course</Link>
+            <li>
+              <Link to='/explore'>Explore Course</Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link font-weight-normal text-white' to='/courses'>My Course</Link>
+            <li>
+              <Link to='/courses'>My Course</Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link font-weight-normal text-white' to='/dashboard'>Swapper</Link>
+            <li>
+              <Link to='/dashboard'>Swapper</Link>
             </li>
-            <li className='nav-item'>
+            <li>
               <Link
-                className='nav-link font-weight-normal text-light'
                 to='/login'
                 onClick={sessionOut(sessionStorage)}
               >
