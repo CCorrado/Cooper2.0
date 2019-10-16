@@ -1,87 +1,59 @@
 import requests
-#pip install requests 
+# pip install requests 
 import json
 from collections import defaultdict
 from bs4 import BeautifulSoup
-#pip install beautifulsoup4
+# pip install beautifulsoup4
+
 
 def main():
     page = requests.get("https://web.stevens.edu/scheduler/core/core.php?cmd=getxml&term=2019F")
     # print(page.content)
-    soup = BeautifulSoup(page.text,'html.parser')
-    with open("Term_Schedule.json",'a') as jsonFile:
-        courses = defaultdict(defaultdict)
-        writer = csv.writer(csvFile)
-        writer.writerow(['Title','Section','call_number','MinCredit','MaxCredit','MaxEnrollment','Cur_Enroll','Status','StartDate','EndDate','Instructor','Term','Meeting_day','start_time','end_time','site','Building','Room','Activity','control','Argument','value','Operator'])
+    soup = BeautifulSoup(page.text, 'html.parser')
+    with open("Term_Schedule.json", 'a') as jsonFile:
+        courses_json = defaultdict(str)
+        courses_list = []
         courses = soup.findAll('course')
         for course in courses:
-            data =[]
-            courses['title'] = course['title']
-            'section' = course['section']
-            'call_number' = course['callnumber']
-            'minCredit' = course['mincredit']
-            'maxCredit' = course['maxcredit']
-            'maxEnrollment' = course['maxenrollment']
-            'currentEnrollment' = course['currentenrollment']
-            'status' = course['status']
-            'startDate' = course['startdate']
-            'endDate' = course['enddate']
-            'instructor' = course['instructor1']
-            'term' = course['term']
+            courses_json['title'] = course['title']
+            courses_json['section'] = course['section']
+            courses_json['call_number'] = course['callnumber']
+            courses_json['minCredit'] = course['mincredit']
+            courses_json['maxCredit'] = course['maxcredit']
+            courses_json['maxEnrollment'] = course['maxenrollment']
+            courses_json['currentEnrollment'] = course['currentenrollment']
+            courses_json['status'] = course['status']
+            courses_json['startDate'] = course['startdate']
+            courses_json['endDate'] = course['enddate']
+            courses_json['instructor'] = course['instructor1']
+            courses_json['term'] = course['term']
             try:
                 meeting = course.find('meeting')
-                Meeting_day = meeting['day']
+                courses_json['meetingDay'] = meeting['day']
                 # print(Meeting_day)
             except Exception as e:
                 # print(e)
-                Meeting_day ='NA'
+                courses_json['meetingDay'] = 'N/A'
                 # print(Meeting_day)
             try:
-                start_time = meeting['starttime']
+                courses_json['startTime'] = meeting['starttime']
             except:
-                start_time = 'NA'
+                courses_json['startTime'] = 'N/A'
             try:
-                end_time = meeting['endtime']
+                courses_json['endTime'] = meeting['endtime']
             except:
-                end_time = 'NA'
+                courses_json['endTime'] = 'N/A'
             try:
-                site = meeting['site']
+                courses_json['building'] = meeting['building']
             except:
-                site = 'NA'
+                courses_json['building'] = 'N/A'
             try:
-                Building = meeting['building']
+                courses_json['room'] = meeting['room']
             except:
-                Building = 'NA'
-            try:
-                Room = meeting['room']
-            except:
-                Room = 'NA'
-            try:
-                Activity = meeting['activity']
-            except:
-                Activity = 'NA'
-            try:
-                Requirement = course.find('requirement')
-                control = Requirement['conrol']
-            except:
-                control = 'NA'
-            try:
-                Argument = Requirement['argument']
-            except:
-                Argument = 'NA'
-            try:
-                Operator = Requirement['operator']
-            except:
-                Operator = 'NA'
-            try:
-                value = Requirement["value2"]
-            except:
-                value = 'NA'
-            data.append([title,section,call_number,MinCredit,MaxCredit,MaxEnrollment,Cur_Enroll,Status,StartDate,EndDate,Instructor,Term,Meeting_day,start_time,end_time,site,Building,Room,Activity,control,Argument,value,Operator])
-            for row in data:
-                writer.writerow(row)
+                courses_json['room'] = 'N/A'
+            courses_list.append(courses_json)
+        json.dump(courses_list, jsonFile, indent=4)
 
 
-
-if __name__ == '__main__':
+if __N/Ame__ == '__main__':
     main()
