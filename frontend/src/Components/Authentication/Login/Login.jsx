@@ -1,19 +1,25 @@
-import React, { Fragment, useCallback, useState } from 'react'
+import React, {
+  Fragment, useCallback, useContext, useState
+} from 'react'
 import { Field, Form, Formik } from 'formik'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
-import PropTypes from 'prop-types'
 import TextInput from '../../common/TextInput'
 import styles from './Login.module.scss'
 import userService from '../../../services/api/userService'
+import { NavigationContext } from '../../Navigation/NavigationContext'
+import ProgressDialog from '../../common/ProgressDialog/ProgressDialog'
 
-export default function Login ({ onSubmit }) {
+export default function Login () {
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [pwFieldVisible, setPwFieldVisible] = useState(false)
+
+  const nav = useContext(NavigationContext)
 
   const handleClickShowPassword = () => {
     setPwFieldVisible(!pwFieldVisible)
@@ -35,6 +41,7 @@ export default function Login ({ onSubmit }) {
 
   return (
     <div className={styles.main}>
+      <ProgressDialog open={loading} />
       <div>
         {error ? (
           <div className={styles.error}>
@@ -135,16 +142,14 @@ export default function Login ({ onSubmit }) {
 
   async function loginUser (emailVal, passwordVal) {
     try {
+      setLoading(true)
       await userService.login(emailVal, passwordVal)
+      setLoading(false)
       setError(false)
       // TODO (corrado) store the response in the local frontend database
-      onSubmit()
+      nav.home.goHome()
     } catch (err) {
       setError(true)
     }
   }
-}
-
-Login.propTypes = {
-  onSubmit: PropTypes.func.isRequired
 }

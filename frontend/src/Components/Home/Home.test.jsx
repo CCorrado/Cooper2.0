@@ -1,12 +1,15 @@
 import { mount } from 'enzyme'
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Home from './Home'
 
 let wrapper
 
 beforeEach(() => {
   wrapper = mount(
-    <Home />
+    <Router>
+      <Home />
+    </Router>
   )
 })
 
@@ -15,6 +18,6 @@ afterEach(() => {
 })
 
 it('should render', () => {
-  const div = wrapper.find('NavBar')
+  const div = wrapper.find('BottomNav')
   expect(div.exists()).toBeTruthy()
 })

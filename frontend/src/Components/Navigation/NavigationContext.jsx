@@ -17,16 +17,34 @@ function NavigationProvider ({ children, history }) {
     history.push('/home')
   }
 
+  const goToAbout = () => {
+    history.push('/home/about')
+  }
+
+  const goToSearch = () => {
+    history.push('/home/search')
+  }
+
+  const goToClasses = () => {
+    history.push('/home/classes')
+  }
+
   const goBackToPrevious = () => {
-    // eslint-disable-next-line react/prop-types
     history.goBack()
+  }
+
+  const home = {
+    goHome,
+    goToClasses,
+    goToSearch,
+    goToAbout
   }
 
   const routes = {
     goToLogin,
     goToRegistration,
-    goHome,
-    goBackToPrevious
+    goBackToPrevious,
+    home
   }
 
   return (
@@ -42,7 +60,8 @@ NavigationProvider.propTypes = {
     PropTypes.node
   ]),
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired
   }).isRequired
 }
 
