@@ -27,7 +27,7 @@ describe('Assert Association Controllers are correct', () => {
         .post('/courses/add')
         .expect(400, 'Could not create course')
     } catch (err) {
-      assert(false, e.message)
+      assert(false, err.message)
     }
   })
 })

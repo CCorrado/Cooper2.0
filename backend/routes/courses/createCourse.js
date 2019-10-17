@@ -64,12 +64,12 @@ function addCourse (req, res, next) {
     })
 }
 
-function getCourse(res, req, next) {
+function getCourse (res, req, next) {
   return axios.get(urlJoin(DB_BASE_URL, 'courses'))
     .then((response) => {
       return res.status(201).json(response.data)
     })
-    .catch((err) => {
+    .catch(() => {
       next(new HttpError(400, 'Could not find any courses'))
     })
 }
