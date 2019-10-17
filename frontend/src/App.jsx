@@ -6,10 +6,13 @@ import Login from './Components/Authentication/Login'
 import Registration from './Components/Authentication/Registration'
 import Home from './Components/Home'
 import mygrid from './Components/Scheduler/mygrid'
+import { Provider } from 'react-redux'
+import store from './Components/Scheduler/store/index'
 
 function App () {
   return (
     <BrowserRouter>
+    <Provider store={store}>
       <Switch>
         <Navigation>
           <Route path='/login' render={() => <Login onSubmit={onSubmitLogin} />} />
@@ -18,6 +21,7 @@ function App () {
           <Route path='/scheduler' component={mygrid} />
         </Navigation>
       </Switch>
+    </Provider>
     </BrowserRouter>
   )
 
