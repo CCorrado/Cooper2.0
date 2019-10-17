@@ -19,12 +19,12 @@ describe('Assert Association Controllers are correct', () => {
     nock.cleanAll()
   })
 
-  it('Should fial to create course', () => {
+  it('Should fail to create course', () => {
     nock('http://cooper-database-api:8080/').post('/courses/').delay(100)
       .reply(200, { 'course': { title: 'wrong' } })
     try {
       return request(app)
-        .post('/course/add')
+        .post('/courses/add')
         .expect(400, 'Could not create course')
     } catch (err) {
       assert(false, e.message)

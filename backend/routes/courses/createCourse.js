@@ -57,11 +57,21 @@ function addCourse (req, res, next) {
   let newReq = CourseReq
   return axios.post(urlJoin(DB_BASE_URL, 'courses'), newReq)
     .then((response) => {
-      return res.status(201)
+      return res.status(201).json({ 'message': 'success' })
     })
     .catch(() => {
       next(new HttpError(400, 'Could not create course'))
     })
 }
 
-module.exports = { addCourse }
+function getCourse(res, req, next) {
+  return axios.get(urlJoin(DB_BASE_URL, 'courses'))
+    .then((response) => {
+      return res.status(201).json(response.data)
+    })
+    .catch((err) => {
+      next(new HttpError(400, 'Could not find any courses'))
+    })
+}
+
+module.exports = { addCourse, getCourse }

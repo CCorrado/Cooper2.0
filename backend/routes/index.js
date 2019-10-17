@@ -24,4 +24,5 @@ router.post('/users/association/major', major.postMajor)
 router.post('/users/association/institute', institute.postInstitute)
 
 router.post('/courses/add', courses.addCourse)
+router.get('/courses', courses.getCourse)
 module.exports = router
