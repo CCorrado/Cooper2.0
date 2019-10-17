@@ -15,23 +15,15 @@ function App () {
     <Provider store={store}>
       <Switch>
         <Navigation>
-          <Route path='/login' render={() => <Login onSubmit={onSubmitLogin} />} />
-          <Route path='/registration' render={() => <Registration onSubmit={onSubmitRegistration} />} />
-          <Route path='/home' component={Home} />
-          <Route path='/scheduler' component={mygrid} />
+          <Route exact path='/login' render={() => <Login />} />
+          <Route exact path='/registration' render={() => <Registration />} />
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/scheduler' component={mygrid} />
         </Navigation>
       </Switch>
     </Provider>
     </BrowserRouter>
   )
-
-  function onSubmitLogin () {
-    // TODO navigate home
-  }
-
-  function onSubmitRegistration () {
-    // TODO navigate home
-  }
 }
 
 export default App

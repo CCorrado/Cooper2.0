@@ -8,7 +8,8 @@
 .submit-button {
   padding-top: 5%;
   padding-bottom: 5%;
-  align-self: center;
+  display: flex;
+  justify-content: center;
 }
 
 .password-input {
@@ -19,8 +20,7 @@
   border: #303030 solid 1pt;
   border-radius: 0;
   width: 100%;
-  padding: .5rem;
-  margin-top: 5% !important;
+  padding: 5%;
   box-sizing: border-box;
 }
 
@@ -42,5 +42,4 @@
 .error {
   color: #b60808;
   font-size: 8pt;
-  padding: 5%;
 }
