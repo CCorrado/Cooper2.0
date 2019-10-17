@@ -4,6 +4,7 @@ import RegistrationForm from './RegistrationForm/RegistrationForm'
 import userService from '../../../services/api/userService'
 import { NavigationContext } from '../../Navigation/NavigationContext'
 import ProgressDialog from '../../common/ProgressDialog/ProgressDialog'
+import logo from '../../../images/bulldog.jpg'
 
 export default function Registration () {
   const [error, setError] = useState(false)
@@ -26,6 +27,9 @@ export default function Registration () {
       <ProgressDialog open={loading} />
       <div className={styles['section--top']}>
         <div className={styles.title}>Mr. Cooper</div>
+        <div className={styles.image}>
+          <img className={styles['image-pad']} src={logo} alt='Mr. Cooper' />
+        </div>
       </div>
       <div className={styles.subtitle}>Create Account</div>
       {error ? (
@@ -52,6 +56,7 @@ export default function Registration () {
       nav.home.goHome()
     } catch (err) {
       setError(true)
+      setLoading(false)
     }
   }
 }

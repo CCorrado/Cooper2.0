@@ -11,6 +11,7 @@ import styles from './Login.module.scss'
 import userService from '../../../services/api/userService'
 import { NavigationContext } from '../../Navigation/NavigationContext'
 import ProgressDialog from '../../common/ProgressDialog/ProgressDialog'
+import logo from '../../../images/bulldog.jpg'
 
 export default function Login () {
   const [loading, setLoading] = useState(false)
@@ -41,7 +42,6 @@ export default function Login () {
 
   return (
     <div className={styles.main}>
-      <ProgressDialog open={loading} />
       <div>
         {error ? (
           <div className={styles.error}>
@@ -49,6 +49,11 @@ export default function Login () {
           </div>
         )
           : null}
+        <ProgressDialog open={loading} />
+        <div className={styles.text}>Mr. Cooper</div>
+        <div className={styles.image}>
+          <img className={styles['image-pad']} src={logo} alt='Mr. Cooper' />
+        </div>
         <Formik
           initialValues={{ email, password }}
           onSubmit={(formVal) => {
@@ -150,6 +155,7 @@ export default function Login () {
       nav.home.goHome()
     } catch (err) {
       setError(true)
+      setLoading(false)
     }
   }
 }

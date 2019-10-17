@@ -11,7 +11,26 @@
   margin-right: auto;
 }
 
+.text {
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-pad {
+  width: 20%;
+}
+
 .submit-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   padding-top: 5%;
   padding-bottom: 5%;
 }
@@ -24,7 +43,6 @@
   border: #303030 solid 1pt;
   border-radius: 0;
   width: 100%;
-  padding: .5rem;
   margin-top: 15px !important;
   box-sizing: border-box;
 }

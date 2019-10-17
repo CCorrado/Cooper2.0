@@ -12,8 +12,9 @@ export default function Home () {
       <Route exact path='/home/about' component={About} />
       <Route exact path='/home/search' component={Search} />
       <Route exact path='/home/classes' component={ClassIndex} />
-
-      <BottomNav />
+      <div className={styles.nav}>
+        <BottomNav />
+      </div>
     </div>
   )
 }
