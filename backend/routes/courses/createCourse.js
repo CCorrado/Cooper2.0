@@ -60,7 +60,7 @@ function addCourse (req, res, next) {
       return res.status(201)
     })
     .catch(() => {
-      next(new HttpError(400, 'Failed to create course'))
+      next(new HttpError(400, 'Could not create course'))
     })
 }
 
