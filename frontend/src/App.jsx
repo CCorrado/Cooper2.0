@@ -11,21 +11,13 @@ function App () {
     <BrowserRouter>
       <Switch>
         <Navigation>
-          <Route path='/login' render={() => <Login onSubmit={onSubmitLogin} />} />
-          <Route path='/registration' render={() => <Registration onSubmit={onSubmitRegistration} />} />
-          <Route path='/home' component={Home} />
+          <Route exact path='/login' render={() => <Login />} />
+          <Route exact path='/registration' render={() => <Registration />} />
+          <Route exact path='/home' component={Home} />
         </Navigation>
       </Switch>
     </BrowserRouter>
   )
-
-  function onSubmitLogin () {
-    // TODO navigate home
-  }
-
-  function onSubmitRegistration () {
-    // TODO navigate home
-  }
 }
 
 export default App
