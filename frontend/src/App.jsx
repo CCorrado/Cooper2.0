@@ -17,7 +17,7 @@ function App () {
         <Navigation>
           <Route path='/login' render={() => <Login onSubmit={onSubmitLogin} />} />
           <Route path='/registration' render={() => <Registration onSubmit={onSubmitRegistration} />} />
-          <Route path='/' component={Home} />
+          <Route path='/home' component={Home} />
           <Route path='/scheduler' component={mygrid} />
         </Navigation>
       </Switch>

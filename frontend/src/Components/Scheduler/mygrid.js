@@ -86,7 +86,7 @@ class ConnectedCenteredGrid extends React.Component {
           <Grid item xs={3}></Grid>
           <Grid item xs={2} >
             <Paper className={classes.paper1}>
-              <Avatar alt="Lets Love French Bulldog." src="/bulldog.jpg" className={classes.bigAvatar} />
+              <Avatar alt="Lets Love French Bulldog." src="/frontend/public/bulldog.jpg" className={classes.bigAvatar} />
               <Subject />
               <Course />
               <CourseList/>
