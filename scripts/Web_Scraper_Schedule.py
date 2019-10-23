@@ -11,10 +11,10 @@ def main():
     # print(page.content)
     soup = BeautifulSoup(page.text, 'html.parser')
     with open("Term_Schedule.json", 'a') as jsonFile:
-        courses_json = defaultdict(str)
         courses_list = []
         courses = soup.findAll('course')
         for course in courses:
+            courses_json = defaultdict(str)
             courses_json['title'] = course['title']
             courses_json['section'] = course['section']
             courses_json['call_number'] = course['callnumber']
@@ -55,5 +55,5 @@ def main():
         json.dump(courses_list, jsonFile, indent=4)
 
 
-if __N/Ame__ == '__main__':
+if __name__ == '__main__':
     main()
