@@ -3,6 +3,7 @@
 const login = require('./users/loginUser')
 const registration = require('./users/createUser')
 const getUser = require('./users/getUser')
+const getCourses = require('./courses/getCourses')
 
 const router = require('express-promise-router')()
 const category = require('./users/association/associateCategory')
@@ -15,6 +16,8 @@ const checkAccessToken = require('../middleware/checkAccessToken')
 router.get('/users/getUser', checkAccessToken, getUser)
 router.post('/users/register', registration)
 router.post('/users/login', login)
+
+router.get('/courses', checkAccessToken, getCourses)
 
 router.post('/users/association/range', range.postRange)
 router.post('/users/association/category', category.postCategory)
