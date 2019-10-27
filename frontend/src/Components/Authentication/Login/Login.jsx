@@ -42,105 +42,104 @@ export default function Login () {
 
   return (
     <div className={styles.main}>
-      <div>
-        {error ? (
-          <div className={styles.error}>
-            {'Failed to login at this time. Please try again later'}
-          </div>
-        )
-          : null}
-        <ProgressDialog open={loading} />
-        <div className={styles.text}>Mr. Cooper</div>
-        <div className={styles.image}>
-          <img className={styles['image-pad']} src={logo} alt='Mr. Cooper' />
+      {error ? (
+        <div className={styles.error}>
+          {'Failed to login at this time. Please try again later'}
         </div>
-        <Formik
-          initialValues={{ email, password }}
-          onSubmit={(formVal) => {
-            setEmail(formVal.email)
-            setPassword(formVal.password)
-            onSubmitForm({ email: formVal.email, password: formVal.password })
-          }}
-          render={({
-            handleSubmit, values, handleChange, handleBlur, errors, touched
-          }) => (
-            <Form id='login' onSubmit={handleSubmit} action=''>
-              <div className={styles.form}>
-                <Field render={() => (
-                  <Fragment>
-                    <TextInput
-                      name='email'
-                      placeholder='E-Mail'
-                      id='email'
-                      value={values.email}
-                      onChange={(e) => {
-                        handleChange(e)
-                      }}
-                      onBlur={handleBlur}
-                      error={errors.email && touched.email}
-                    />
-                    {errors.email && touched.email ? (
-                      <div>
-                        <p className={styles.error}>
-                          {errors.email}
-                        </p>
-                      </div>
-                    ) : null}
-                  </Fragment>
-                )}
-                />
-                <Field render={() => (
-                  <Fragment>
-                    <TextField
-                      name='password'
-                      id='password'
-                      type={pwFieldVisible ? 'text' : 'password'}
-                      value={values.password}
-                      onChange={(e) => {
-                        handleChange(e)
-                      }}
-                      className={errors.password && touched.password ? styles['error-border'] : styles['password-input']}
-                      onBlur={handleBlur}
-                      error={errors.password && touched.password}
-                      label='Password'
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position='end'>
-                            <IconButton
-                              edge='end'
-                              aria-label='toggle password visibility'
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                            >
-                              {pwFieldVisible ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                    {errors.password && touched.password ? (
-                      <div>
-                        <p className={styles.error}>
-                          {errors.password}
-                        </p>
-                      </div>
-                    ) : null}
-                  </Fragment>
-                )}
-                />
-              </div>
-            </Form>
-          )}
-        />
-        <div className={styles['submit-button']}>
-          <button
-            color='primary'
-            form='login'
-            type='submit'
-          >
-            Login
-          </button>
-        </div>
+      )
+        : null}
+      <ProgressDialog open={loading} />
+      <div className={styles.text}>Mr. Cooper</div>
+      <div className={styles.image}>
+        <img className={styles['image-pad']} src={logo} alt='Mr. Cooper' />
+      </div>
+      <Formik
+        initialValues={{ email, password }}
+        onSubmit={(formVal) => {
+          setEmail(formVal.email)
+          setPassword(formVal.password)
+          onSubmitForm({ email: formVal.email, password: formVal.password })
+        }}
+        render={({
+          handleSubmit, values, handleChange, handleBlur, errors, touched
+        }) => (
+          <Form id='login' onSubmit={handleSubmit} action=''>
+            <div className={styles.form}>
+              <Field render={() => (
+                <Fragment>
+                  <TextInput
+                    name='email'
+                    placeholder='E-Mail'
+                    id='email'
+                    value={values.email}
+                    onChange={(e) => {
+                      handleChange(e)
+                    }}
+                    onBlur={handleBlur}
+                    error={errors.email && touched.email}
+                  />
+                  {errors.email && touched.email ? (
+                    <div>
+                      <p className={styles.error}>
+                        {errors.email}
+                      </p>
+                    </div>
+                  ) : null}
+                </Fragment>
+              )}
+              />
+              <Field render={() => (
+                <Fragment>
+                  <TextField
+                    name='password'
+                    id='password'
+                    type={pwFieldVisible ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={(e) => {
+                      handleChange(e)
+                    }}
+                    className={errors.password && touched.password ? styles['error-border'] : styles['password-input']}
+                    onBlur={handleBlur}
+                    error={errors.password && touched.password}
+                    label='Password'
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position='end'>
+                          <IconButton
+                            edge='end'
+                            aria-label='toggle password visibility'
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {pwFieldVisible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                  {errors.password && touched.password ? (
+                    <div>
+                      <p className={styles.error}>
+                        {errors.password}
+                      </p>
+                    </div>
+                  ) : null}
+                </Fragment>
+              )}
+              />
+            </div>
+          </Form>
+        )}
+      />
+      <div className={styles['submit-button']}>
+        <button
+          color='primary'
+          form='login'
+          type='submit'
+          className={styles.button}
+        >
+          Login
+        </button>
       </div>
     </div>
   )
