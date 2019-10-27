@@ -49,10 +49,11 @@ export default function Login () {
       )
         : null}
       <ProgressDialog open={loading} />
-      <div className={styles.text}>Mr. Cooper</div>
+      <div className={styles['text--title']}>Mr. Cooper</div>
       <div className={styles.image}>
         <img className={styles['image-pad']} src={logo} alt='Mr. Cooper' />
       </div>
+      <div className={styles['text--subtitle']}>Login</div>
       <Formik
         initialValues={{ email, password }}
         onSubmit={(formVal) => {
@@ -133,12 +134,18 @@ export default function Login () {
       />
       <div className={styles['submit-button']}>
         <button
-          color='primary'
           form='login'
           type='submit'
           className={styles.button}
         >
           Login
+        </button>
+        <button
+          type='button'
+          onClick={nav.goToRegistration}
+          className={styles['button--register']}
+        >
+          Create an Account
         </button>
       </div>
     </div>
