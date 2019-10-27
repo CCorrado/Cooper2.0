@@ -1,12 +1,18 @@
 import { mount } from 'enzyme'
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import Login from './Login'
+import { Navigation } from '../../Navigation/NavigationContext'
 
 let wrapper
 
 beforeEach(() => {
   wrapper = mount(
-    <Login onSubmit={jest.fn()} />
+    <BrowserRouter>
+      <Navigation>
+        <Login onSubmit={jest.fn()} />
+      </Navigation>
+    </BrowserRouter>
   )
 })
 

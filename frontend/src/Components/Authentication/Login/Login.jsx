@@ -142,7 +142,7 @@ export default function Login () {
         </button>
         <button
           type='button'
-          onClick={nav.goToRegistration}
+          onClick={goToReg}
           className={styles['button--register']}
         >
           Create an Account
@@ -150,6 +150,10 @@ export default function Login () {
       </div>
     </div>
   )
+
+  function goToReg () {
+    nav.goToRegistration()
+  }
 
   async function loginUser (emailVal, passwordVal) {
     try {
