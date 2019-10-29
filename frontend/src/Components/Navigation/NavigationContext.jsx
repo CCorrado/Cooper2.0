@@ -14,7 +14,7 @@ function NavigationProvider ({ children, history }) {
   }
 
   const goHome = () => {
-    history.push('/home')
+    history.push('/home/cooper')
   }
 
   const goToAbout = () => {
