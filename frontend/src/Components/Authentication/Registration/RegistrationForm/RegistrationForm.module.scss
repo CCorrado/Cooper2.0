@@ -6,10 +6,18 @@
 }
 
 .submit-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   padding-top: 5%;
   padding-bottom: 5%;
-  display: flex;
-  justify-content: center;
+}
+
+.button {
+  padding: 2%;
+  font-size: 18px;
+  color: white;
+  background: #2aa198;
 }
 
 .password-input {

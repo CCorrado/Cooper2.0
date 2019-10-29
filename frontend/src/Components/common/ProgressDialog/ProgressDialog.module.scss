@@ -1,4 +1,10 @@
 .container {
   display: flex;
   height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #000000;
+  opacity: 0.5;
+  align-self: center;
+  justify-content: center;
 }
