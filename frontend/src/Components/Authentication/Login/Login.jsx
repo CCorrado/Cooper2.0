@@ -12,6 +12,7 @@ import userService from '../../../services/api/userService'
 import { NavigationContext } from '../../Navigation/NavigationContext'
 import ProgressDialog from '../../common/ProgressDialog/ProgressDialog'
 import logo from '../../../images/bulldog.jpg'
+import { UserContext } from '../../common/UserContext'
 
 export default function Login () {
   const [loading, setLoading] = useState(false)
@@ -21,6 +22,7 @@ export default function Login () {
   const [pwFieldVisible, setPwFieldVisible] = useState(false)
 
   const nav = useContext(NavigationContext)
+  const userContext = useContext(UserContext)
 
   const handleClickShowPassword = () => {
     setPwFieldVisible(!pwFieldVisible)
@@ -158,10 +160,16 @@ export default function Login () {
   async function loginUser (emailVal, passwordVal) {
     try {
       setLoading(true)
-      await userService.login(emailVal, passwordVal)
+      const userResponse = await userService.login(emailVal, passwordVal)
       setLoading(false)
       setError(false)
-      // TODO (corrado) store the response in the local frontend database
+      await userContext.setUserId(userResponse.userId)
+      await userContext.setToken({
+        accessToken: userResponse.accessToken,
+        refreshToken: userResponse.refreshToken
+      })
+      await userContext.saveUser(userResponse)
+      console.log(userContext.user)
       nav.home.goHome()
     } catch (err) {
       setError(true)
