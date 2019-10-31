@@ -17,13 +17,13 @@ class CourseController {
     private val courseService: CourseService? = null
 
     @RequestMapping(path = ["/courses/{userId}"], method = [RequestMethod.GET])
-    fun getCourses(@PathVariable("userId") userId: Long?): List<Course>? {
+    fun getCourses(@PathVariable("userId") userId: String?): List<Course>? {
         return courseService?.findCoursesByUserId(userId)
     }
 
     @RequestMapping(path = ["/courses/{id}/user/{userId}"], method = [RequestMethod.GET])
     fun getCourseById(@PathVariable("id") id: Long?,
-                      @PathVariable("userId") userId: Long?): CourseResponse? {
+                      @PathVariable("userId") userId: String?): CourseResponse? {
         courseService?.findCoursesByUserId(userId)?.let { dbCourses ->
             dbCourses.forEach { course ->
                 if (course.courseId == id) {
@@ -57,7 +57,7 @@ class CourseController {
 
     @RequestMapping(path = ["/courses/{title}/user/{userId}"], method = [RequestMethod.GET])
     fun getCourseByTitle(@PathVariable("title") title: String?,
-                         @PathVariable("userId") userId: Long?): List<CourseResponse>? {
+                         @PathVariable("userId") userId: String?): List<CourseResponse>? {
         courseService?.findCoursesByUserId(userId)?.let { dbCourses ->
             val courses: ArrayList<CourseResponse> = ArrayList()
             dbCourses.forEach { dbCourse ->
@@ -101,16 +101,14 @@ class CourseController {
             }
 
             getCourseByTitle(courseRequest.title, courseRequest.userId)?.let { courses ->
-                if (courses.isNotEmpty()) {
-                    courses.forEach { existingCourse ->
-                        if (courseRequest.section.equals(existingCourse.section)
-                                && courseRequest.term.equals(existingCourse.term)) {
-                            throw ObjectNotCreated(
-                                    message = "Cannot register for the same course ${courseRequest.title} " +
-                                            "within the same term ${courseRequest.term}",
-                                    status = HttpStatus.BAD_REQUEST
-                            )
-                        }
+                courses.forEach { existingCourse ->
+                    if (courseRequest.section.equals(existingCourse.section)
+                            && courseRequest.term.equals(existingCourse.term)) {
+                        throw ObjectNotCreated(
+                                message = "Cannot register for the same course ${courseRequest.title} " +
+                                        "within the same term ${courseRequest.term}",
+                                status = HttpStatus.BAD_REQUEST
+                        )
                     }
                 }
             }
@@ -145,7 +143,7 @@ class CourseController {
     }
 
     @RequestMapping(path = ["/courses/{id}/user/{userId}/unregister"], method = [RequestMethod.GET])
-    fun unregister(@PathVariable("userId") userId: Long?,
+    fun unregister(@PathVariable("userId") userId: String?,
                    @PathVariable("id") id: Long) {
         try {
             getCourseById(id, userId)?.courseId?.let { courseId ->

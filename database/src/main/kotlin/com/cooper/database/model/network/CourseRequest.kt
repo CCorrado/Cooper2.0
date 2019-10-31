@@ -1,7 +1,7 @@
 package com.cooper.database.model.network
 
 data class CourseRequest(
-        var userId: Long? = 0,
+        var userId: String? = "",
         var title: String?,
         var section: String?,
         var minCredit: String?,

@@ -57,7 +57,7 @@ class CourseServiceImpl : CourseService {
         }
     }
 
-    override fun findCoursesByUserId(id: Long?): List<Course>? {
+    override fun findCoursesByUserId(id: String?): List<Course>? {
         id?.let { userId ->
             try {
                 return this.courseRepository?.findByUserId(userId)

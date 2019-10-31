@@ -6,7 +6,7 @@ interface UserService {
 
     fun list(): List<User>
 
-    fun findById(id: Long?): User?
+    fun findById(id: String?): User?
 
     fun findByUsername(username: String): User?
 

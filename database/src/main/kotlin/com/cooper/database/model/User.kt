@@ -1,20 +1,16 @@
 package com.cooper.database.model
 
-import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity(name = "User")
 class User {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "userId")
-    var userId: Long = 0
+    var userId: String = ""
 
     @Column(name = "role")
     var role: String? = null

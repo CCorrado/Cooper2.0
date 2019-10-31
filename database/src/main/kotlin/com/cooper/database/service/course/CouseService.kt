@@ -8,7 +8,7 @@ interface CourseService {
 
     fun findById(id: Long?): Course?
 
-    fun findCoursesByUserId(id: Long?): List<Course>?
+    fun findCoursesByUserId(id: String?): List<Course>?
 
     fun findByTitle(title: String?): List<Course>?
 

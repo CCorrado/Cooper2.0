@@ -12,12 +12,12 @@
     "watch": "nodemon -L index.js"
   },
   "dependencies": {
-    "nodemon": "^1.19.2",
     "axios": "^0.18.1",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.4",
     "body-parser": "latest",
     "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "csurf": "^1.10.0",
     "debug": "~2.6.9",
     "dotenv": "latest",
@@ -26,10 +26,11 @@
     "helmet": "^3.16.0",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.2",
     "request": "^2.88.0",
     "url-join": "^4.0.1",
     "uuid": "latest",
-    "cors": "^2.8.5"
+    "uuid-random": "^1.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

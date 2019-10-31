@@ -9,7 +9,7 @@ interface CourseRepository : CrudRepository<Course, Long> {
 
     fun findByTitle(title: String?): List<Course>
 
-    fun findByUserId(userId: Long): List<Course>?
+    fun findByUserId(userId: String): List<Course>?
 
     fun findBySection(section: String): List<Course>?
 
