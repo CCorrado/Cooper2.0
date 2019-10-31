@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css'
 import { Navigation } from './Components/Navigation/NavigationContext'
 import Login from './Components/Authentication/Login'

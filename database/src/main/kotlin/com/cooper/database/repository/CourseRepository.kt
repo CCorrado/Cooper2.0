@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CourseRepository : CrudRepository<Course, Long> {
 
-    fun findByCourseId(courseId: Long?): Course?
-
     fun findByTitle(title: String?): List<Course>
+
+    fun findByUserId(userId: String): List<Course>?
+
+    fun findBySection(section: String): List<Course>?
 
 }

@@ -82,6 +82,7 @@ function sendLoginUser (res, user, next) {
     .then(function (response) {
       return res.status(201).json({
         username: response.data.username,
+        userId: response.data.userId,
         name: response.data.name,
         role: response.data.role,
         accessToken: response.data.accessToken,

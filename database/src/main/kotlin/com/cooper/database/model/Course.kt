@@ -17,6 +17,9 @@ class Course {
     @Column(name = "courseId")
     var courseId: Long = 1
 
+    @Column(name = "userId")
+    var userId: String? = ""
+
     @Column(name = "createdDate")
     var createdDate: Date? = Date()
 

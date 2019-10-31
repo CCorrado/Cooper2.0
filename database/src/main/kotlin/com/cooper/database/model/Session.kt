@@ -1,7 +1,10 @@
 package com.cooper.database.model
 
 import java.util.*
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.PrimaryKeyJoinColumn
 
 @Entity(name = "Session")
 class Session {
@@ -12,7 +15,7 @@ class Session {
     var sessionId: Long = 1
 
     @Column(name = "userId")
-    var userId: Long? = 0
+    var userId: String? = ""
 
     @Column(name = "createdDate")
     var createdDate: Date? = Date()

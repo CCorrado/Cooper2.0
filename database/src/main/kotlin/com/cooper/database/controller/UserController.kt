@@ -53,7 +53,7 @@ class UserController {
     }
 
     @RequestMapping(path = ["/users/{id}"])
-    fun get(@PathVariable("id") id: Long?): UserSession? {
+    fun get(@PathVariable("id") id: String?): UserSession? {
         userService?.findById(id)?.let { user ->
             sessionService?.findSessionByUserId(user.userId)?.let { session ->
                 return UserSession(
@@ -135,7 +135,7 @@ class UserController {
         return newUser
     }
 
-    private fun makeSessionFromRequest(userId: Long?, userSession: UserSession): Session {
+    private fun makeSessionFromRequest(userId: String?, userSession: UserSession): Session {
         val newSession = Session()
         newSession.userId = userId
         newSession.accessToken = userSession.accessToken

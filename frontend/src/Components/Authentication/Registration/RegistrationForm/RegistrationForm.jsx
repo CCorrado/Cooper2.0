@@ -187,6 +187,7 @@ export default function RegistrationForm ({ onSubmit }) {
       />
       <div className={styles['submit-button']}>
         <button
+          className={styles.button}
           color='primary'
           form='registration'
           type='submit'
