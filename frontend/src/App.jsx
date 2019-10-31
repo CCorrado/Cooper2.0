@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import { Navigation } from './Components/Navigation/NavigationContext'
 import Login from './Components/Authentication/Login'
@@ -13,14 +13,12 @@ function App () {
   return (
     <BrowserRouter>
     <Provider store={store}>
-      <Switch>
         <Navigation>
           <Route exact path='/login' render={() => <Login />} />
           <Route exact path='/registration' render={() => <Registration />} />
           <Route exact path='/home' component={Home} />
           <Route exact path='/scheduler' component={mygrid} />
         </Navigation>
-      </Switch>
     </Provider>
     </BrowserRouter>
   )
