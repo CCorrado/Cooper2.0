@@ -15,7 +15,7 @@ class SessionServiceImpl : SessionService {
     @Autowired
     private val sessionRepository: SessionRepository? = null
 
-    override fun listAllSessions(userId: Long?): List<Session> {
+    override fun listAllSessions(userId: String?): List<Session> {
         val all = ArrayList<Session>()
 
         try {
@@ -43,7 +43,7 @@ class SessionServiceImpl : SessionService {
         }
     }
 
-    override fun findSessionByUserId(userId: Long): Session? {
+    override fun findSessionByUserId(userId: String): Session? {
         try {
             return sessionRepository?.findByUserId(userId)
         } catch (err: Exception) {

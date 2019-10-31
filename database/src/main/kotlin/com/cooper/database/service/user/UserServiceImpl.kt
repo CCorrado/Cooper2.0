@@ -31,10 +31,10 @@ class UserServiceImpl : UserService {
         return all
     }
 
-    override fun findById(id: Long?): User? {
+    override fun findById(id: String?): User? {
         id?.let { userId ->
             try {
-                return this.userRepository?.findById(userId)?.get()
+                return this.userRepository?.findByUserId(userId)
             } catch (err: Exception) {
                 throw ObjectNotFound(message = "Could not find user with id: $id")
             }

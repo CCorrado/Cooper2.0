@@ -1,6 +1,7 @@
 package com.cooper.database.service.course
 
 import com.cooper.database.error.ObjectNotCreated
+import com.cooper.database.error.ObjectNotDeleted
 import com.cooper.database.error.ObjectNotFound
 import com.cooper.database.model.Course
 import com.cooper.database.repository.CourseRepository
@@ -53,6 +54,41 @@ class CourseServiceImpl : CourseService {
             }
         } ?: run {
             throw ObjectNotFound(message = "Could not find any course with id: $title")
+        }
+    }
+
+    override fun findCoursesByUserId(id: String?): List<Course>? {
+        id?.let { userId ->
+            try {
+                return this.courseRepository?.findByUserId(userId)
+            } catch (err: Exception) {
+                throw ObjectNotFound(message = "Could not find any courses for user: $userId")
+            }
+        } ?: run {
+            throw ObjectNotFound(message = "Could not find any courses for user: $id")
+        }
+    }
+
+    override fun findBySection(section: String?): List<Course>? {
+        section?.let { courseSection ->
+            try {
+                return this.courseRepository?.findBySection(courseSection)
+            } catch (err: Exception) {
+                throw ObjectNotFound(message = "Could not find any course with section: $courseSection")
+            }
+        } ?: run {
+            throw ObjectNotFound(message = "Could not find any course with section: $section")
+        }
+    }
+
+    override fun unregister(courseId: Long) {
+        try {
+            this.courseRepository?.deleteById(courseId)
+        } catch (err: Exception) {
+            throw ObjectNotDeleted(
+                    status = HttpStatus.BAD_REQUEST,
+                    message = "Could not unregister from course: $courseId"
+            )
         }
     }
 

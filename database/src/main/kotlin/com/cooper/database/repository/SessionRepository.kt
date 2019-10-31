@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface SessionRepository : CrudRepository<Session, Long> {
 
-    fun findByUserId(userId: Long?): Session?
+    fun findByUserId(userId: String?): Session?
 
-    fun findAllByUserId(userId: Long?): List<Session>
+    fun findAllByUserId(userId: String?): List<Session>
 }
