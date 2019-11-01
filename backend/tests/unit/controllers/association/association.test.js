@@ -15,7 +15,7 @@ describe('Assert Association Controllers are correct', () => {
   it('Should Successfully post Major', () => {
     try {
       return request(app)
-        .post('/users/association/major')
+        .post('/api/users/association/major')
         .expect(201, { 'message': 'success' })
     } catch (e) {
       assert(false, e.message)
@@ -25,7 +25,7 @@ describe('Assert Association Controllers are correct', () => {
   it('Should Successfully post Institute', () => {
     try {
       return request(app)
-        .post('/users/association/institute')
+        .post('/api/users/association/institute')
         .expect(201, { 'message': 'success' })
     } catch (e) {
       assert(false, e.message)
@@ -35,7 +35,7 @@ describe('Assert Association Controllers are correct', () => {
   it('Should Successfully post Category', () => {
     try {
       return request(app)
-        .post('/users/association/category')
+        .post('/api/users/association/category')
         .expect(201, { 'message': 'success' })
     } catch (e) {
       assert(false, e.message)
@@ -45,7 +45,7 @@ describe('Assert Association Controllers are correct', () => {
   it('Should Successfully post Range', () => {
     try {
       return request(app)
-        .post('/users/association/range')
+        .post('/api/users/association/range')
         .expect(201, { 'message': 'success' })
     } catch (e) {
       assert(false, e.message)

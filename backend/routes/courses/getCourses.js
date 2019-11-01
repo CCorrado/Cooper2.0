@@ -32,7 +32,7 @@ const courseList = require('../../data/stevens_courses')
  */
 
 /**
- * @route GET /courses
+ * @route GET /api/courses
  * @group Courses
  * @param {string} name.query - The Course Name
  * @param {string} number.query - The Course number

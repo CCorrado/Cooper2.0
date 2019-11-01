@@ -15,7 +15,7 @@ class Course {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "courseId")
-    var courseId: Long = 1
+    var courseId: Long = 0
 
     @Column(name = "userId")
     var userId: String? = ""

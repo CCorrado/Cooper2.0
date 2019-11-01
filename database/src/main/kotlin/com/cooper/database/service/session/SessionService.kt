@@ -8,7 +8,7 @@ interface SessionService {
 
     fun findById(id: Long?): Session?
 
-    fun findSessionByUserId(userId: String): Session?
+    fun findSessionByUserUuid(userUuid: String?): Session?
 
     fun create(session: Session): Session?
 }

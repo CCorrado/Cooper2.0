@@ -27,7 +27,7 @@ describe('Assert Course controller functions normally', () => {
 
   it('Should fail to return courses to the user', () => {
     try {
-      return request(app).get('/courses').expect(401)
+      return request(app).get('/api/courses').expect(401)
     } catch (e) {
       assert(false, e.message)
     }
@@ -35,7 +35,7 @@ describe('Assert Course controller functions normally', () => {
 
   it('Should successfully return courses to the user', () => {
     try {
-      return request(app).get('/courses').set('Authorization', 'Bearer someUniqueToken').expect(200)
+      return request(app).get('/api/courses').set('Authorization', 'Bearer someUniqueToken').expect(200)
     } catch (e) {
       assert(false, e.message)
     }
@@ -43,7 +43,7 @@ describe('Assert Course controller functions normally', () => {
 
   it('Should successfully return courses to the user for query name', () => {
     try {
-      return request(app).get('/courses?name=Special').set('Authorization', 'Bearer someUniqueToken').expect(200)
+      return request(app).get('/api/courses?name=Special').set('Authorization', 'Bearer someUniqueToken').expect(200)
     } catch (e) {
       assert(false, e.message)
     }
@@ -51,7 +51,7 @@ describe('Assert Course controller functions normally', () => {
 
   it('Should successfully return courses to the user for query number', () => {
     try {
-      return request(app).get('/courses?name=SSW').set('Authorization', 'Bearer someUniqueToken').expect(200)
+      return request(app).get('/api/courses?name=SSW').set('Authorization', 'Bearer someUniqueToken').expect(200)
     } catch (e) {
       assert(false, e.message)
     }

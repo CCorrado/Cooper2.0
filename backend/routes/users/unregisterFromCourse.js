@@ -14,7 +14,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route GET /users/courses/unregister
+ * @route GET /api/users/courses/unregister
  * @group users
  * @param {string} userId.query.required - The ID of the user desired
  * @param {int} courseId.query.required - The ID of the course to unregister from

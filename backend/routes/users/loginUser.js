@@ -21,7 +21,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route POST /users/login
+ * @route POST /api/users/login
  * @group users - Login existing user
  * @param {LoginRequest.model} LoginRequest.body.required - the new login request
  * @returns {LoginResponse.model} 200 - The User's information and session
