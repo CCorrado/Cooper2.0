@@ -9,5 +9,5 @@ interface UserRepository : CrudRepository<User, Long> {
 
     fun findByUsername(username: String?): User?
 
-    fun findByUserId(userId: String?): User?
+    fun findByUserUuid(userUuid: String?): User?
 }

@@ -34,7 +34,7 @@ class UserServiceImpl : UserService {
     override fun findById(id: String?): User? {
         id?.let { userId ->
             try {
-                return this.userRepository?.findByUserId(userId)
+                return this.userRepository?.findByUserUuid(userId)
             } catch (err: Exception) {
                 throw ObjectNotFound(message = "Could not find user with id: $id")
             }

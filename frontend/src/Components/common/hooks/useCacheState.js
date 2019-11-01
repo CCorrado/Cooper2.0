@@ -29,6 +29,7 @@ export default function useCacheState (key, defaultValue = null) {
 
   useEffect(() => {
     initialize()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return [

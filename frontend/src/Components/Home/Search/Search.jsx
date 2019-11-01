@@ -8,15 +8,16 @@ export default function Search () {
   const userContext = useContext(UserContext)
   const [courses, setCourses] = useCacheState('courses', [])
 
-  async function getCourses () {
+  async function getCourses (accessToken) {
     if (!Array.isArray(courses)) {
-      const courseList = await userService.getCourses(userContext.token.accessToken)
+      const courseList = await userService.getCourses(accessToken)
       setCourses(courseList)
     }
   }
 
   useEffect(() => {
-    getCourses()
+    getCourses(userContext.token.accessToken)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
