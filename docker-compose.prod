@@ -45,4 +45,4 @@ services:
       - cooper-backend
       - cooper-database-api
     ports:
-      - 4000:80
+      - 3000:80
