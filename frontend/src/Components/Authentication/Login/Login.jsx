@@ -169,7 +169,6 @@ export default function Login () {
         refreshToken: userResponse.refreshToken
       })
       await userContext.saveUser(userResponse)
-      console.log(userContext.user)
       nav.home.goHome()
     } catch (err) {
       setError(true)

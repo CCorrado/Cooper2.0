@@ -37,7 +37,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route GET /users/courses
+ * @route GET /api/users/courses
  * @group users
  * @param {string} userId.query.required - The ID of the user desired
  * @returns {Course.model} 200 - A List of Courses registered by the user

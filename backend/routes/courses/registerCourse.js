@@ -36,7 +36,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route POST /courses/register
+ * @route POST /api/courses/register
  * @group Courses
  * @param {CourseRequest.model} CourseRequest.body.required - the new course registration request
  * @returns {Course.model} 201 - A New Course object

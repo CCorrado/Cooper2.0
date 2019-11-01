@@ -38,7 +38,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route POST /users/register
+ * @route POST /api/users/register
  * @group users - Create a new user
  * @param {RegisterRequest.model} RegisterRequest.body.required - the new registration request
  * @returns {RegisterResponse.model} 200 - A New User object
@@ -46,7 +46,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 module.exports = function (req, res, next) {
   const options = {}
-  const userId = uuid.toString()
+  const userId = uuid().toString()
   const userRequest = {
     'username': req.body.username,
     'password': req.body.password,

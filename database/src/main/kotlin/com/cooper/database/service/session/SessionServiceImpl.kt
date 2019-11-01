@@ -43,11 +43,12 @@ class SessionServiceImpl : SessionService {
         }
     }
 
-    override fun findSessionByUserId(userId: String): Session? {
+
+    override fun findSessionByUserUuid(userUuid: String?): Session? {
         try {
-            return sessionRepository?.findByUserId(userId)
+            return sessionRepository?.findByUserId(userUuid)
         } catch (err: Exception) {
-            throw ObjectNotFound(message = "Could not find session for user with id: $userId")
+            throw ObjectNotFound(message = "Could not find session for user with id: $userUuid")
         }
     }
 

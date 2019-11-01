@@ -1,18 +1,18 @@
 package com.cooper.database.model
 
+import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.PrimaryKeyJoinColumn
+import javax.persistence.*
 
 @Entity(name = "Session")
 class Session {
 
     @Id
     @PrimaryKeyJoinColumn(name = "userId")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "sessionId")
-    var sessionId: Long = 1
+    var sessionId: Long = 0
 
     @Column(name = "userId")
     var userId: String? = ""

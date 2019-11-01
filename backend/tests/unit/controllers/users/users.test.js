@@ -26,7 +26,7 @@ describe('Assert User controller functions normally', () => {
     nock('http://cooper-database-api:8080/').get('/users/4').delay(100).reply(200, { 'user': { id: '4' } })
     try {
       return request(app)
-        .get('/users/getUser')
+        .get('/api/users/getUser')
         .query('4')
         .expect(401, {
           'error': 'access_denied',
@@ -65,7 +65,7 @@ describe('Assert User controller functions normally', () => {
     sinon.stub(jwt, 'verify').returns('someUniqueToken')
     try {
       return request(app)
-        .post('/users/login').send({
+        .post('/api/users/login').send({
           'username': 'john@doe.com',
           'password': 'Test1234'
         })
@@ -100,7 +100,7 @@ describe('Assert User controller functions normally', () => {
     sinon.stub(jwt, 'sign').returns('someUniqueToken')
     try {
       return request(app)
-        .post('/users/register').send({
+        .post('/api/users/register').send({
           'username': 'john@doe.com',
           'password': 'Test1234',
           'name': 'John Doe',
