@@ -9,9 +9,9 @@ class Session {
 
     @Id
     @PrimaryKeyJoinColumn(name = "userId")
-    @GeneratedValue(generator = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "sessionId")
+    @Column(name = "sessionId", updatable = false, nullable = false)
     var sessionId: Long = 0
 
     @Column(name = "userId")
