@@ -13,7 +13,7 @@ class User {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "userId")
+    @Column(name = "id")
     var id: Long = 0
 
     @Column(name = "userUuid")
