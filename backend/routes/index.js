@@ -23,7 +23,7 @@ router.get('/api/users/courses', checkAccessToken, getUsersCourses)
 router.get('/api/users/courses/unregister', checkAccessToken, unregisterUserFromCourse)
 
 router.get('/api/courses', checkAccessToken, getCourses)
-router.post('/api/courses/register', checkAccessToken, registerCourse)
+router.post('/api/courses/registerCourse', checkAccessToken, registerCourse)
 
 router.post('/api/users/association/range', range.postRange)
 router.post('/api/users/association/category', category.postCategory)

@@ -3,7 +3,7 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL
 const paths = {
   auth: { login: '/users/login', register: '/users/register' },
   user: { getProfile: '/users/' },
-  courses: { getAllCourses: '/courses', getUserCourses: '/users/courses', registerCourse: '/courses/register' }
+  courses: { getAllCourses: '/courses', getUserCourses: '/users/courses', registerCourse: '/courses/registerCourse' }
 }
 
 function login (email, password) {
@@ -65,7 +65,7 @@ function registerCourse (authToken, userId, course) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`
     },
-    body: course
+    body: JSON.stringify({ ...course, userId })
   }).then(res => res.json())
 }
 
