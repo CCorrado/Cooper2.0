@@ -46,6 +46,18 @@ export default function CourseListing ({ course }) {
           {getTimeFromCourse(course.endTime)}
         </div>
       )}
+      {course && course.meetingDay && (
+        <div className={styles['course-credits']}>
+          {'Day(s): '}
+          {course.meetingDay}
+        </div>
+      )}
+      {course && course.minCredit && (
+        <div className={styles['course-credits']}>
+          {'Credits: '}
+          {course.minCredit}
+        </div>
+      )}
     </Card>
   )
 }

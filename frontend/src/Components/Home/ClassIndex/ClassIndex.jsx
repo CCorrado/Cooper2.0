@@ -10,11 +10,9 @@ export default function ClassIndex () {
   const [registeredCourses, setRegisteredCourses] = useCacheState('registeredCourses', [])
 
   async function getCourses (accessToken, userId) {
-    if (!registeredCourses.length) {
-      const registeredList = await userService.getCoursesForUser(accessToken, userId)
-      if (registeredList && registeredList.length) {
-        setRegisteredCourses(registeredList)
-      }
+    const registeredList = await userService.getCoursesForUser(accessToken, userId)
+    if (registeredList && registeredList.length) {
+      setRegisteredCourses(registeredList)
     }
   }
 
