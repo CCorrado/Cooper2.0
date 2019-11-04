@@ -8,7 +8,6 @@
 .main {
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
 }
 
@@ -40,7 +39,7 @@
 }
 
 .image-pad {
-  width: 35%;
+  width: 150px;
 }
 
 .submit-button {
@@ -55,7 +54,7 @@
 
 .button {
   width: 50%;
-  padding: 5%;
+  padding: 15px;
   font-size: 18px;
   color: white;
   background: #2aa198;
