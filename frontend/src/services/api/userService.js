@@ -3,7 +3,7 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL
 const paths = {
   auth: { login: '/users/login', register: '/users/register' },
   user: { getProfile: '/users/' },
-  courses: { getAllCourses: '/courses', getUserCourses: '/courses/' }
+  courses: { getAllCourses: '/courses', getUserCourses: '/users/courses', registerCourse: '/courses/register' }
 }
 
 function login (email, password) {
@@ -49,7 +49,7 @@ function getCourses (authToken) {
 }
 
 function getCoursesForUser (authToken, userId) {
-  return fetch(`${baseUrl}${paths.courses.getUserCourses}${userId}`, {
+  return fetch(`${baseUrl}${paths.courses.getUserCourses}?userId=${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -58,6 +58,17 @@ function getCoursesForUser (authToken, userId) {
   }).then(res => res.json())
 }
 
+function registerCourse (authToken, userId, course) {
+  return fetch(`${baseUrl}${paths.courses.registerCourse}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: course
+  }).then(res => res.json())
+}
+
 export default {
-  login, register, getProfile, getCourses, getCoursesForUser
+  login, register, getProfile, getCourses, getCoursesForUser, registerCourse
 }
