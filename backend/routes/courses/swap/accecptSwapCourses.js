@@ -51,6 +51,6 @@ module.exports = function (req, res, next) {
       return res.status(200).json(response.data)
     })
     .catch(() => {
-      return next(new HttpError(400, "Cannot complete course swap without swaperUserId and swapeeUserId parameter set."))
+      return next(new HttpError(400, 'Cannot complete course swap without swaperUserId and swapeeUserId parameter set.'))
     })
 }

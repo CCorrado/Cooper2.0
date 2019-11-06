@@ -33,11 +33,6 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @typedef SwapeeRequest swapeeUserId -- 
- * 
- */
-
-/**
  * @route GET /courses/swaps
  * @group Courses
  * @returns {SwapRequest.model} 200 - A list of SwapCourses
