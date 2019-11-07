@@ -33,25 +33,14 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route GET /courses/swaps
- * @group Courses
- * @returns {SwapRequest.model} 200 - A list of SwapCourses
- * @returns {ErrorResponse.model}  default - HttpError - SwapCourses not found.
- */
-
-/**
  * @route POST /courses/swaps/create
  * @group Courses
  * @param {SwapCourses.model} SwapCourses.body.required - A swap req contains userId and courseToGiveId, courseGetId
  * @return {CourseSwapResponse.model} 201 - Create successfully
  * @return {ErrorResponse.model}  default - HttpError - Swap cannot created
+ * @security JWT
  */
 
-/**
- * @route POST /courses/swaps/accept
- * @group Courses
- * @param {SwapCourses.model} Swap
- */
 
 module.exports = function (req, res, next) {
   const swapReq = {
