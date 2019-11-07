@@ -28,7 +28,7 @@ router.get('/api/users/courses/unregister', checkAccessToken, unregisterUserFrom
 router.get('/api/courses', checkAccessToken, getCourses)
 router.post('/api/courses/registerCourse', checkAccessToken, registerCourse)
 
-router.get('/api/courses/swaps', getSwapCourses)
+router.get('/api/courses/swaps', checkAccessToken, getSwapCourses)
 router.post('/api/courses/swaps/create', checkAccessToken, createSwapCourses)
 router.post('/api/courses/swaps/accept', checkAccessToken, acceptSwapCourses)
 
