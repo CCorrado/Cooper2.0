@@ -79,7 +79,7 @@ class CourseSwapServiceImpl : CourseSwapService {
 
     override fun create(courseSwap: CourseSwap): CourseSwap? {
         try {
-            return courseSwapRepository?.createCourseSwap(courseSwap)
+            return courseSwapRepository?.create(courseSwap)
         } catch (err: Exception) {
             throw ObjectNotCreated(
                     status = HttpStatus.BAD_REQUEST,
