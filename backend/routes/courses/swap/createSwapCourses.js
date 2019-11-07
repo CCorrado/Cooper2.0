@@ -43,11 +43,11 @@ const DB_BASE_URL = env('DB_BASE_URL')
 
 module.exports = function (req, res, next) {
   const swapReq = {
-    'userId': req.body.userId,
+    'swaperUserId': req.body.swaperUserId,
     'courseToGiveId': req.body.courseToGiveId,
     'courseToGetId': req.body.courseToGetId
   }
-  return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swap', 'create'), swapReq)
+  return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swaps', 'create'), swapReq)
     .then((response) => {
       return res.status(200).json(response.data)
     })

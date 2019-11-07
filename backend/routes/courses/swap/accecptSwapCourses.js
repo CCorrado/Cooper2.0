@@ -14,11 +14,10 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @typedef SwapeeRequest
- * @property {[string]} swapeeUserId -- the userId of the person initiating the swap
- * @property {[string]} courseToGiveId -- the course being offered up by the swaperUser
- * @property {[string]} courseToGetId -- the course desired by the swaperUser
- * @property {[string]} swapeeAccept -- status of swapee
+ * @typedef acceptSwapRequest
+ * @property {[string]} courseSwapId -- the courseSwapId of this swap session
+ * @property {[string]} swapeeUserId -- the userId of swapee
+ * @property {[string]} swapeeAccept -- the status of this swap
  */
 
 /**
@@ -36,7 +35,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
 /**
  * @route POST /courses/swaps/accept
  * @group Courses
- * @param {SwapCourses.model} SwapCourses.body.required - A swap req contains userId and courseToGiveId, courseGetId, swapeeAccept
+ * @param {acceptSwapRequest.model} acceptSwapRequest.body.required - A swap req contains userId and courseToGiveId, courseGetId, swapeeAccept
  * @return {CourseSwapResponse.model} 201 - Accept successfully
  * @return {ErrorResponse.model}  default - HttpError - Swap cannot created
  * @security JWT
@@ -44,11 +43,11 @@ const DB_BASE_URL = env('DB_BASE_URL')
 
 module.exports = function (req, res, next) {
   const swapReq = {
-    'userId': req.body.userId,
-    'courseToGiveId': req.body.courseToGiveId,
-    'courseToGetId': req.body.courseToGetId
+    'courseSwapId': req.body.courseSwapId,
+    'swapeeUserId': req.body.swapeeUserId,
+    'swapeeAccept': req.body.swapeeAccept
   }
-  return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swap', 'accept'), swapReq)
+  return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swaps', 'accept'), swapReq)
     .then((response) => {
       return res.status(200).json(response.data)
     })

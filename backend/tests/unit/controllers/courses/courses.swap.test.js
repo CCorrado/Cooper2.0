@@ -42,16 +42,18 @@ describe('Assert CourseSwap controller functions normally', () => {
   })
 
   it('Should successfully return swap course list to the user', () => {
-    nock('http://cooper-database-api:8080/').get('/courses/swaps').delay(100).reply(200, {
-      'courseSwapId': '0',
-      'courseToGetId': 'SSW695',
-      'courseToGiveId': 'SSW690',
-      'createdDate': '2019/11/08',
-      'swapCompleted': 'completed',
-      'swapeeAccept': 'accepted',
-      'swapeeUserId': '0',
-      'swaperUserId': '1'
-    })
+    nock('http://cooper-database-api:8080/').get('/courses/swaps').delay(100).reply(200, [
+      {
+        'courseSwapId': '0',
+        'courseToGetId': 'SSW695',
+        'courseToGiveId': 'SSW690',
+        'createdDate': '2019/11/08',
+        'swapCompleted': 'completed',
+        'swapeeAccept': 'accepted',
+        'swapeeUserId': '0',
+        'swaperUserId': '1'
+      }
+    ])
     try {
       return request(app).get('/api/courses/swaps').set('Authorization', 'Bearer someUniqueToken').expect(200)
     } catch (e) {
