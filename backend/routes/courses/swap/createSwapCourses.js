@@ -41,7 +41,6 @@ const DB_BASE_URL = env('DB_BASE_URL')
  * @security JWT
  */
 
-
 module.exports = function (req, res, next) {
   const swapReq = {
     'userId': req.body.userId,

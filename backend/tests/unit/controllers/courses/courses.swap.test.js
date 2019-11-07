@@ -9,7 +9,7 @@ const nock = require('nock')
 
 describe('Assert CourseSwap controller functions normally', () => {
   let app
-  
+
   beforeEach(() => {
     app = importFresh('../../../../app')
   })
