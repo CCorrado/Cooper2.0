@@ -21,10 +21,11 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route GET /courses/swaps
+ * @route GET /api/courses/swaps
  * @group Courses
  * @returns {SwapRequest.model} 200 - A list of SwapCourses
  * @returns {ErrorResponse.model}  default - HttpError - SwapCourses not found.
+ * @security JWT
  */
 
 module.exports = function (req, res, next) {

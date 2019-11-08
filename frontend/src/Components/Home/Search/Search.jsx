@@ -48,7 +48,6 @@ export default function Search () {
       {courses && Array.isArray(courses) && (
         <Autocomplete
           multiple
-          disableCloseOnSelect
           onChange={(event, selectedCourses, value) => {
             setCoursesToRegister(selectedCourses)
           }}

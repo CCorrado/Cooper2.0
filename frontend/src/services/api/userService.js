@@ -3,7 +3,8 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL
 const paths = {
   auth: { login: '/users/login', register: '/users/register' },
   user: { getProfile: '/users/' },
-  courses: { getAllCourses: '/courses', getUserCourses: '/users/courses', registerCourse: '/courses/registerCourse' }
+  courses: { getAllCourses: '/courses', getUserCourses: '/users/courses', registerCourse: '/courses/registerCourse' },
+  swaps: { getSwapsForUser: '/courses/swaps' }
 }
 
 function login (email, password) {
@@ -69,6 +70,16 @@ function registerCourse (authToken, userId, course) {
   }).then(res => res.json())
 }
 
+function getSwapsForUser (authToken) {
+  return fetch(`${baseUrl}${paths.swaps.getSwapsForUser}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
+  }).then(res => res.json())
+}
+
 export default {
-  login, register, getProfile, getCourses, getCoursesForUser, registerCourse
+  login, register, getProfile, getCourses, getCoursesForUser, registerCourse, getSwapsForUser
 }

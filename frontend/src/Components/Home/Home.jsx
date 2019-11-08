@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Switch, useLocation } from 'react-router-dom'
 import BottomNav from './BottomNav'
 import styles from './Home.module.scss'
 import About from './About'
 import ClassIndex from './ClassIndex'
 import Search from './Search'
 import HomeScreen from './HomeScreen/HomeScreen'
+import RedirectRoute from '../Redirect/RedirectRoute'
 
 export default function Home () {
   const location = useLocation()
@@ -17,10 +18,10 @@ export default function Home () {
         <BottomNav selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </div>
       <Switch location={location}>
-        <Route exact path='/home/cooper' component={HomeScreen} />
-        <Route exact path='/home/about' component={About} />
-        <Route exact path='/home/search' component={Search} />
-        <Route exact path='/home/classes' component={ClassIndex} />
+        <RedirectRoute exact path='/home/cooper' component={HomeScreen} />
+        <RedirectRoute exact path='/home/about' component={About} />
+        <RedirectRoute exact path='/home/search' component={Search} />
+        <RedirectRoute exact path='/home/classes' component={ClassIndex} />
       </Switch>
     </div>
   )

@@ -1,11 +1,6 @@
 'use strict'
 
-const axios = require('axios')
-const urlJoin = require('url-join')
-
-const { HttpError } = require('../../errors')
-const env = require('../../env')
-const DB_BASE_URL = env('DB_BASE_URL')
+const { unregisterFromCourse } = require('../../services/courseService')
 
 /**
  * @typedef ErrorResponse
@@ -25,14 +20,4 @@ const DB_BASE_URL = env('DB_BASE_URL')
 module.exports = function (req, res, next) {
   const { userId, courseId } = req.query
   return unregisterFromCourse(res, userId, courseId, next)
-}
-
-function unregisterFromCourse (res, userId, courseId, next) {
-  return axios.get(urlJoin(DB_BASE_URL, 'courses', courseId, 'users', userId, 'unregister'))
-    .then(function (response) {
-      return res.send(response)
-    })
-    .catch(function () {
-      next(new HttpError(400, 'Failed to unregister the course for the user'))
-    })
 }
