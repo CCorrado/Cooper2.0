@@ -15,7 +15,7 @@ function App () {
         <Route exact path='/login' render={() => <Login />} />
         <Route exact path='/registration' render={() => <Registration />} />
         <RedirectRoute path='/home' component={Home} />
-        <RedirectRoute path='/' component={Home} />
+        <RedirectRoute exact path='/' component={Home} />
       </UserProvider>
     </Navigation>
   )
