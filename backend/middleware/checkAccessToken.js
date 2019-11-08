@@ -26,7 +26,7 @@ function check (req, res, next) {
     req.cooper = {}
   }
 
-  req.cooper.userId = decodedToken.sub
+  req.cooper.userId = decodedToken.userId
 
   next()
 }

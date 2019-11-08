@@ -4,6 +4,8 @@ const { HttpError } = require('../../errors')
 
 const courseList = require('../../data/stevens_courses')
 
+const { getAllCourses } = require('../../services/courseService')
+
 /**
  * @typedef ErrorResponse
  * @property {[integer]} statusCode
@@ -43,25 +45,8 @@ const courseList = require('../../data/stevens_courses')
 module.exports = function (req, res, next) {
   const { name, number } = req.query
   try {
-    if (name) {
-      let returnCourses = []
-      courseList.map(course => {
-        if (course.title.replace(/\s+/g, '').includes(name.replace(/\s+/g, ''))) {
-          returnCourses.push(course)
-        }
-      })
-      return res.status(200).json(returnCourses)
-    }
-    if (number) {
-      let returnCourses = []
-      courseList.map(course => {
-        if (course.section.replace(/\s+/g, '').includes(number.replace(/\s+/g, ''))) {
-          returnCourses.push(course)
-        }
-      })
-      return res.status(200).json(returnCourses)
-    }
-    return res.status(200).json(courseList)
+    const courses = getAllCourses(name, number, courseList)
+    return res.status(200).json(courses)
   } catch (e) {
     next(new HttpError(400, 'Failed to find any courses'))
   }

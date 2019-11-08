@@ -55,10 +55,10 @@ module.exports = function (req, res, next) {
   }
 
   const userToken = {
-    'access_token': jwt.sign({ userId }, 'cooper', Object.assign(options, { expiresIn: '2 hours' })),
+    'access_token': jwt.sign({ userId: userId }, 'cooper', Object.assign(options, { expiresIn: '4 hours' })),
     'token_type': 'bearer',
     'expires_in': 60 * 60 * 24,
-    'refresh_token': jwt.sign({ userId }, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
+    'refresh_token': jwt.sign({ userId: userId }, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
   }
 
   let newRequest = {
