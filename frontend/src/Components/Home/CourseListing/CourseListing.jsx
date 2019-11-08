@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '@material-ui/core'
+import swap from '../../../images/swap.svg'
 import moment from 'moment'
 import styles from './CourseListing.module.scss'
 
-export default function CourseListing ({ course }) {
-  function getTimeFromCourse (time) {
+export default function CourseListing({ course, isRegistered }) {
+  function getTimeFromCourse(time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
         return moment(time, 'HH:mm:ss').format('h:mm a')
@@ -18,9 +19,12 @@ export default function CourseListing ({ course }) {
 
   return (
     <Card className={styles.card}>
-      <div className={styles['course-title']}>
-        {'Course: '}
-        {course.title}
+      <div className={styles['title-container']}>
+        <div className={styles['course-title']}>
+          {'Course: '}
+          {course.title}
+        </div>
+        {isRegistered && <img className={styles['swap-icon']} src={swap} alt='' />}
       </div>
       <div className={styles['course-instructor']}>
         {'Instructor: '}
@@ -58,6 +62,7 @@ export default function CourseListing ({ course }) {
           {course.minCredit}
         </div>
       )}
+      <div className={styles.vh} />
     </Card>
   )
 }
@@ -81,5 +86,6 @@ CourseListing.propTypes = {
     endTime: PropTypes.string.isRequired,
     building: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  isRegistered: PropTypes.bool.isRequired
 }
