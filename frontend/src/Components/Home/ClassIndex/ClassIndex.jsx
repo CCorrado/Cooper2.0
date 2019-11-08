@@ -24,7 +24,7 @@ export default function ClassIndex () {
   return (
     <div className={styles.container}>
       {registeredCourses && registeredCourses.length ? (registeredCourses.map(course => (
-        <CourseListing key={course.section} course={course} />
+        <CourseListing key={course.section} course={course} isRegistered />
       ))) : (
         <div className={styles.text}>
           {'No courses currently registered'}
