@@ -87,5 +87,9 @@ CourseListing.propTypes = {
     building: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired
   }).isRequired,
-  isRegistered: PropTypes.bool.isRequired
+  isRegistered: PropTypes.bool
+}
+
+CourseListing.defaultProps = {
+  isRegistered: false
 }
