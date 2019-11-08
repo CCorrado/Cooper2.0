@@ -6,6 +6,7 @@ import Login from './Components/Authentication/Login'
 import Registration from './Components/Authentication/Registration'
 import Home from './Components/Home'
 import { UserProvider } from './Components/common/UserContext'
+import RedirectRoute from './Components/Redirect/RedirectRoute'
 
 function App () {
   return (
@@ -13,7 +14,8 @@ function App () {
       <UserProvider>
         <Route exact path='/login' render={() => <Login />} />
         <Route exact path='/registration' render={() => <Registration />} />
-        <Route path='/home' component={Home} />
+        <RedirectRoute path='/home' component={Home} />
+        <RedirectRoute path='/' component={Home} />
       </UserProvider>
     </Navigation>
   )

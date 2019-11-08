@@ -5,6 +5,7 @@ const urlJoin = require('url-join')
 
 const { HttpError } = require('../../../errors')
 const env = require('../../../env')
+const { getCoursesForUser } = require('../../../services/courseService')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 /**
