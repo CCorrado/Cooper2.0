@@ -5,11 +5,11 @@ import { UserContext } from '../../common/UserContext'
 import useCacheState from '../../common/hooks/useCacheState'
 import userService from '../../../services/api/userService'
 
-export default function ClassIndex() {
+export default function ClassIndex () {
   const userContext = useContext(UserContext)
   const [registeredCourses, setRegisteredCourses] = useCacheState('registeredCourses', [])
 
-  async function getCourses(accessToken, userId) {
+  async function getCourses (accessToken, userId) {
     const registeredListResponse = await userService.getCoursesForUser(accessToken, userId)
     if (registeredListResponse) {
       setRegisteredCourses(registeredListResponse.length ? registeredListResponse : [])
@@ -26,10 +26,10 @@ export default function ClassIndex() {
       {registeredCourses && registeredCourses.length ? (registeredCourses.map(course => (
         <CourseListing key={course.section} course={course} isRegistered />
       ))) : (
-          <div className={styles.text}>
-            {'No courses currently registered'}
-          </div>
-        )}
+        <div className={styles.text}>
+          {'No courses currently registered'}
+        </div>
+      )}
     </div>
   )
 }

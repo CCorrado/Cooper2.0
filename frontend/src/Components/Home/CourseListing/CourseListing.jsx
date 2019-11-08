@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '@material-ui/core'
-import swap from '../../../images/swap.svg'
 import moment from 'moment'
+import swap from '../../../images/swap.svg'
 import styles from './CourseListing.module.scss'
 
-export default function CourseListing({ course, isRegistered }) {
-  function getTimeFromCourse(time) {
+export default function CourseListing ({ course, isRegistered }) {
+  function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
         return moment(time, 'HH:mm:ss').format('h:mm a')
