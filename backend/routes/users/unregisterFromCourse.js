@@ -17,13 +17,13 @@ const { HttpError } = require('../../errors')
  * @returns {ErrorResponse.model}  default - HttpError - Course not registered
  * @security JWT
  */
-module.exports = function (req, res, next) {
+module.exports = async function (req, res, next) {
   const { userId, courseId } = req.query
 
   if (req.cooper.userId !== userId) {
     return next(new HttpError(400, 'Cannot unregister a different user for a course'))
   }
 
-  const unregResponse = unregisterFromCourse(userId, courseId, next)
-  return unregResponse
+  const resp = await unregisterFromCourse(userId, courseId, next)
+  return res.send(resp)
 }

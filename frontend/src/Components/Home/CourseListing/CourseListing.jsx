@@ -7,7 +7,7 @@ import deleteIcon from '../../../images/delete.svg'
 import styles from './CourseListing.module.scss'
 import { UserContext } from '../../common/UserContext'
 
-export default function CourseListing ({ course, isRegistered }) {
+export default function CourseListing ({ course, isRegistered, unregClicked }) {
   const userContext = useContext(UserContext)
 
   function getTimeFromCourse (time) {
@@ -40,7 +40,7 @@ export default function CourseListing ({ course, isRegistered }) {
           <button
             type='button'
             alt=''
-            onClick={() => userContext.unregisterCourse(course)}
+            onClick={unregClicked}
           >
             <img className={styles['swap-icon']} src={deleteIcon} alt='' />
           </button>
@@ -107,7 +107,8 @@ CourseListing.propTypes = {
     building: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired
   }).isRequired,
-  isRegistered: PropTypes.bool
+  isRegistered: PropTypes.bool,
+  unregClicked: PropTypes.func.isRequired
 }
 
 CourseListing.defaultProps = {

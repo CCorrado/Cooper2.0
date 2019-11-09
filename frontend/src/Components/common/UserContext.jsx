@@ -25,9 +25,10 @@ export function UserProvider ({ children }) {
   }
 
   async function unregisterCourse (course) {
-    await userService.unregisterFromCourse(
+    const unreg = await userService.unregisterFromCourse(
       userId, course.courseId, token.accessToken
     )
+    return unreg
   }
 
   return (
