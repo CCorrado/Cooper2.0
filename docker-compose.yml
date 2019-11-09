@@ -30,7 +30,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - './backend/:/usr/src/app'
+      - './backend/:/usr/src/app:cached'
       - '/usr/src/app/node_modules'
     ports:
       - '9000:9000'
@@ -41,7 +41,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - './frontend/:/usr/src/app'
+      - './frontend/:/usr/src/app:cached'
       - '/usr/src/app/node_modules'
     ports:
       - '3000:3000'

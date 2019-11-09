@@ -146,14 +146,7 @@ class CourseController {
     fun unregister(@PathVariable("userId") userId: String?,
                    @PathVariable("id") id: Long) {
         try {
-            getCourseById(id, userId)?.courseId?.let { courseId ->
-                courseService?.unregister(courseId = courseId)
-            } ?: run {
-                throw ObjectNotCreated(
-                        message = "Could not unregister from course $id",
-                        status = HttpStatus.BAD_REQUEST
-                )
-            }
+            courseService?.unregister(id)
         } catch (err: Exception) {
             throw ObjectNotCreated(
                     message = "Could not unregister from course $id",

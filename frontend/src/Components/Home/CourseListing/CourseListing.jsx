@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { Card } from '@material-ui/core'
 import moment from 'moment'
 import swap from '../../../images/swap.svg'
+import deleteIcon from '../../../images/delete.svg'
 import styles from './CourseListing.module.scss'
 
-export default function CourseListing ({ course, isRegistered }) {
+export default function CourseListing ({ course, isRegistered, unregClicked }) {
   function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
-        return moment(time, 'HH:mm:ss').format('h:mm a')
+        return moment(time, 'HH:mm:ss').utc(true).format('h:mm a')
       }
       return null
     } catch (err) {
@@ -24,7 +25,23 @@ export default function CourseListing ({ course, isRegistered }) {
           {'Course: '}
           {course.title}
         </div>
-        {isRegistered && <img className={styles['swap-icon']} src={swap} alt='' />}
+        {isRegistered && (
+          <button
+            type='button'
+            alt=''
+          >
+            <img className={styles['swap-icon']} src={swap} alt='' />
+          </button>
+        )}
+        {isRegistered && (
+          <button
+            type='button'
+            alt=''
+            onClick={unregClicked}
+          >
+            <img className={styles['swap-icon']} src={deleteIcon} alt='' />
+          </button>
+        )}
       </div>
       <div className={styles['course-instructor']}>
         {'Instructor: '}
@@ -87,7 +104,8 @@ CourseListing.propTypes = {
     building: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired
   }).isRequired,
-  isRegistered: PropTypes.bool
+  isRegistered: PropTypes.bool,
+  unregClicked: PropTypes.func.isRequired
 }
 
 CourseListing.defaultProps = {

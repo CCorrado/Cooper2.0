@@ -14,6 +14,9 @@ export default function ClassIndex () {
     if (registeredListResponse) {
       setRegisteredCourses(registeredListResponse.length ? registeredListResponse : [])
     }
+    if (registeredListResponse && registeredListResponse.error) {
+      userContext.setToken('')
+    }
   }
 
   useEffect(() => {
@@ -24,7 +27,17 @@ export default function ClassIndex () {
   return (
     <div className={styles.container}>
       {registeredCourses && registeredCourses.length ? (registeredCourses.map(course => (
-        <CourseListing key={course.section} course={course} isRegistered />
+        <CourseListing
+          key={course.section}
+          course={course}
+          isRegistered
+          unregClicked={async () => {
+            const unreg = await userContext.unregisterCourse(course)
+            if (unreg && !unreg.error_message) {
+              await getCourses(userContext.token.accessToken, userContext.userId)
+            }
+          }}
+        />
       ))) : (
         <div className={styles.text}>
           {'No courses currently registered'}
