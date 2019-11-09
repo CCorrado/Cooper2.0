@@ -13,8 +13,7 @@ function unregisterFromCourse (userId, courseId, next) {
     .then(function (response) {
       return response
     })
-    .catch(err => {
-      console.log(err)
+    .catch(() => {
       next(new HttpError(400, 'Failed to unregister the course for the user'))
     })
 }
