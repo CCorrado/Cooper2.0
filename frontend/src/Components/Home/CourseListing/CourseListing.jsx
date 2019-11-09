@@ -6,7 +6,9 @@ import swap from '../../../images/swap.svg'
 import deleteIcon from '../../../images/delete.svg'
 import styles from './CourseListing.module.scss'
 
-export default function CourseListing ({ course, isRegistered, unregClicked }) {
+export default function CourseListing ({
+  course, isRegistered, swapClicked, unregClicked
+}) {
   function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
@@ -29,6 +31,9 @@ export default function CourseListing ({ course, isRegistered, unregClicked }) {
           <button
             type='button'
             alt=''
+            onClick={() => {
+              swapClicked(course)
+            }}
           >
             <img className={styles['swap-icon']} src={swap} alt='' />
           </button>
@@ -105,7 +110,8 @@ CourseListing.propTypes = {
     room: PropTypes.string.isRequired
   }).isRequired,
   isRegistered: PropTypes.bool,
-  unregClicked: PropTypes.func.isRequired
+  unregClicked: PropTypes.func.isRequired,
+  swapClicked: PropTypes.func.isRequired
 }
 
 CourseListing.defaultProps = {
