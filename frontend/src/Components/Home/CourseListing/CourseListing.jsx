@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '@material-ui/core'
 import moment from 'moment'
 import swap from '../../../images/swap.svg'
 import deleteIcon from '../../../images/delete.svg'
 import styles from './CourseListing.module.scss'
-import { UserContext } from '../../common/UserContext'
 
 export default function CourseListing ({ course, isRegistered, unregClicked }) {
-  const userContext = useContext(UserContext)
-
   function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {

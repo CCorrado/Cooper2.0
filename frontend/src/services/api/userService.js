@@ -96,5 +96,12 @@ function unregisterFromCourse (userId, courseId, authToken) {
 }
 
 export default {
-  login, register, getProfile, getCourses, getCoursesForUser, registerCourse, getSwapsForUser, unregisterFromCourse
+  login,
+  register,
+  getProfile,
+  getCourses,
+  getCoursesForUser,
+  registerCourse,
+  getSwapsForUser,
+  unregisterFromCourse
 }
