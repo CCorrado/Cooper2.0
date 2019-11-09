@@ -28,26 +28,14 @@ const DB_BASE_URL = env('DB_BASE_URL')
  * @returns {ErrorResponse.model}  default - HttpError - User not found
  */
 module.exports = function (req, res, next) {
-  const options = {}
   const userRequest = {
     'username': req.body.username,
     'password': req.body.password
   }
 
-  const userToken = {
-    'access_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 hours' })),
-    'token_type': 'bearer',
-    'expires_in': 60 * 60 * 24,
-    'refresh_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
-  }
-
   let newRequest = {
     'username': userRequest.username,
-    'password': userRequest.password,
-    'accessToken': userToken.access_token,
-    'tokenType': userToken.token_type,
-    'expiresIn': userToken.expires_in,
-    'refreshToken': userToken.refresh_token
+    'password': userRequest.password
   }
 
   getUserObjectIfExists(res, newRequest, next)
@@ -56,14 +44,22 @@ module.exports = function (req, res, next) {
 function getUserObjectIfExists (res, user, next) {
   return axios.get(urlJoin(DB_BASE_URL, 'users?username=' + user.username))
     .then(function (response) {
-      return hashUserData(res, response.data, user.password, user, next)
+      return hashUserData(res, response.data, user.password, next)
     })
-    .catch(function () {
+    .catch(() => {
       next(new HttpError(400, 'Failed to login: bad username or password'))
     })
 }
 
-function hashUserData (res, user, pwAttempted, userToken, next) {
+function hashUserData (res, user, pwAttempted, next) {
+  const options = {}
+  const userToken = {
+    'accessToken': jwt.sign({ userId: user.userId }, 'cooper', Object.assign(options, { expiresIn: '2 hours' })),
+    'tokenType': 'bearer',
+    'expiresIn': 60 * 60 * 24,
+    'refreshToken': jwt.sign({ userId: user.userId }, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
+  }
+
   // check pw against db stored pw
   if (bcrypt.compareSync(pwAttempted, user.password)) {
     user.accessToken = userToken.accessToken

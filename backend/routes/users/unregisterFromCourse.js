@@ -25,5 +25,5 @@ module.exports = function (req, res, next) {
   }
 
   const unregResponse = unregisterFromCourse(userId, courseId, next)
-  return res(unregResponse)
+  return unregResponse
 }

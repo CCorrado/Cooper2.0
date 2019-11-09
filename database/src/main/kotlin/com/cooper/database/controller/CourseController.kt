@@ -145,14 +145,7 @@ class CourseController {
     @RequestMapping(path = ["/courses/{id}/user/{userId}/unregister"], method = [RequestMethod.GET])
     fun unregister(@PathVariable("userId") userId: String?,
                    @PathVariable("id") id: Long) {
-        try {
-            courseService?.unregister(id)
-        } catch (err: Exception) {
-            throw ObjectNotCreated(
-                    message = "Could not unregister from course $id",
-                    status = HttpStatus.BAD_REQUEST
-            )
-        }
+        courseService?.unregister(id)
     }
 
     private fun createCourseFromRequest(courseRequest: CourseRequest): Course {
