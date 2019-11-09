@@ -14,6 +14,9 @@ export default function ClassIndex () {
     if (registeredListResponse) {
       setRegisteredCourses(registeredListResponse.length ? registeredListResponse : [])
     }
+    if (registeredListResponse && registeredListResponse.error) {
+      userContext.setToken('')
+    }
   }
 
   useEffect(() => {

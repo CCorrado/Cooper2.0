@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '@material-ui/core'
 import moment from 'moment'
 import swap from '../../../images/swap.svg'
+import deleteIcon from '../../../images/delete.svg'
 import styles from './CourseListing.module.scss'
+import { UserContext } from '../../common/UserContext'
 
 export default function CourseListing ({ course, isRegistered }) {
+  const userContext = useContext(UserContext)
+
   function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
-        return moment(time, 'HH:mm:ss').format('h:mm a')
+        return moment(time, 'HH:mm:ss').utc(true).format('h:mm a')
       }
       return null
     } catch (err) {
@@ -24,7 +28,23 @@ export default function CourseListing ({ course, isRegistered }) {
           {'Course: '}
           {course.title}
         </div>
-        {isRegistered && <img className={styles['swap-icon']} src={swap} alt='' />}
+        {isRegistered && (
+          <button
+            type='button'
+            alt=''
+          >
+            <img className={styles['swap-icon']} src={swap} alt='' />
+          </button>
+        )}
+        {isRegistered && (
+          <button
+            type='button'
+            alt=''
+            onClick={() => userContext.unregisterCourse(course)}
+          >
+            <img className={styles['swap-icon']} src={deleteIcon} alt='' />
+          </button>
+        )}
       </div>
       <div className={styles['course-instructor']}>
         {'Instructor: '}
