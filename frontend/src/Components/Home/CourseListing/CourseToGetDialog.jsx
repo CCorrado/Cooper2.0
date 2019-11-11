@@ -23,7 +23,7 @@ export default function CourseToGetDialog ({ courseIdToOffer }) {
 
   async function createSwap (course) {
     const courseSwap = await userService.createSwap(
-      userContext.token.accessToken, userContext.userId, course.courseId, courseIdToOffer
+      userContext.token.accessToken, userContext.userId, course.section, courseIdToOffer
     )
     if (courseSwap) {
       nav.goBackToPrevious()

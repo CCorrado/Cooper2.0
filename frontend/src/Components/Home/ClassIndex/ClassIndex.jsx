@@ -1,20 +1,13 @@
-import React, {
-  useContext, useEffect, useState
-} from 'react'
+import React, { useContext, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import styles from './ClassIndex.module.scss'
 import CourseListing from '../CourseListing/CourseListing'
 import { UserContext } from '../../common/UserContext'
 import useCacheState from '../../common/hooks/useCacheState'
 import userService from '../../../services/api/userService'
-import CourseToGetDialog from '../CourseListing/CourseToGetDialog'
-import { NavigationContext } from '../../Navigation/NavigationContext'
-import RedirectRoute from '../../Redirect/RedirectRoute'
 
-export default function ClassIndex () {
+export default function ClassIndex ({ onSwapClicked }) {
   const userContext = useContext(UserContext)
-  const nav = useContext(NavigationContext)
-  const [courseToSwap, setCourseToSwap] = useState('')
-
   const [registeredCourses, setRegisteredCourses] = useCacheState('registeredCourses', [])
 
   async function getCourses (accessToken, userId) {
@@ -33,37 +26,29 @@ export default function ClassIndex () {
   }, [])
 
   return (
-    <>
-      <RedirectRoute
-        exact
-        path='/home/classes/swap'
-        render={() => (
-          <CourseToGetDialog courseIdToOffer={courseToSwap.courseId} />
-        )}
-      />
-      <div className={styles.container}>
-        {registeredCourses && registeredCourses.length ? (registeredCourses.map(course => (
-          <CourseListing
-            key={course.section}
-            course={course}
-            isRegistered
-            unregClicked={async () => {
-              const unreg = await userContext.unregisterCourse(course)
-              if (unreg && !unreg.error_message) {
-                await getCourses(userContext.token.accessToken, userContext.userId)
-              }
-            }}
-            swapClicked={async (course) => {
-              setCourseToSwap(course)
-              nav.home.goToCourseSwap()
-            }}
-          />
-        ))) : (
-          <div className={styles.text}>
-            {'No courses currently registered'}
-          </div>
-        )}
-      </div>
-    </>
+    <div className={styles.container}>
+      {registeredCourses && registeredCourses.length ? (registeredCourses.map(course => (
+        <CourseListing
+          key={course.section}
+          course={course}
+          isRegistered
+          unregClicked={async () => {
+            const response = await userContext.unregisterCourse(course)
+            if (response && !response.error_message) {
+              await getCourses(userContext.token.accessToken, userContext.userId)
+            }
+          }}
+          swapClicked={onSwapClicked}
+        />
+      ))) : (
+        <div className={styles.text}>
+          {'No courses currently registered'}
+        </div>
+      )}
+    </div>
   )
+}
+
+ClassIndex.propTypes = {
+  onSwapClicked: PropTypes.func.isRequired
 }

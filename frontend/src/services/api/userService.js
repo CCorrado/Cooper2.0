@@ -93,8 +93,8 @@ function createSwap (authToken, userId, courseToGet, courseToGive) {
       Authorization: `Bearer ${authToken}`
     },
     body: JSON.stringify({
-      courseToGiveId: courseToGive.courseId,
-      courseToGetId: courseToGet.courseId,
+      courseToGiveId: courseToGive,
+      courseToGetId: courseToGet,
       swaperUserId: userId
     })
   }).then(res => res.json())
