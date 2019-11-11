@@ -9,7 +9,7 @@ const paths = {
     registerCourse: '/courses/registerCourse',
     unregister: '/users/courses/unregister'
   },
-  swaps: { getSwapsForUser: '/courses/swaps' }
+  swaps: { getSwapsForUser: '/courses/swaps', createSwap: '/courses/swaps/create' }
 }
 
 function login (email, password) {
@@ -85,6 +85,21 @@ function getSwapsForUser (authToken) {
   }).then(res => res.json())
 }
 
+function createSwap (authToken, userId, courseToGet, courseToGive) {
+  return fetch(`${baseUrl}${paths.swaps.createSwap}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify({
+      courseToGiveId: courseToGive,
+      courseToGetId: courseToGet,
+      swaperUserId: userId
+    })
+  }).then(res => res.json())
+}
+
 function unregisterFromCourse (userId, courseId, authToken) {
   return fetch(`${baseUrl}${paths.courses.unregister}?userId=${userId}&courseId=${courseId}`, {
     method: 'GET',
@@ -103,5 +118,6 @@ export default {
   getCoursesForUser,
   registerCourse,
   getSwapsForUser,
-  unregisterFromCourse
+  unregisterFromCourse,
+  createSwap
 }

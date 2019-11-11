@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import styles from './ClassIndex.module.scss'
 import CourseListing from '../CourseListing/CourseListing'
 import { UserContext } from '../../common/UserContext'
 import useCacheState from '../../common/hooks/useCacheState'
 import userService from '../../../services/api/userService'
 
-export default function ClassIndex () {
+export default function ClassIndex ({ onSwapClicked }) {
   const userContext = useContext(UserContext)
   const [registeredCourses, setRegisteredCourses] = useCacheState('registeredCourses', [])
 
@@ -32,11 +33,12 @@ export default function ClassIndex () {
           course={course}
           isRegistered
           unregClicked={async () => {
-            const unreg = await userContext.unregisterCourse(course)
-            if (unreg && !unreg.error_message) {
+            const response = await userContext.unregisterCourse(course)
+            if (response && !response.error_message) {
               await getCourses(userContext.token.accessToken, userContext.userId)
             }
           }}
+          swapClicked={onSwapClicked}
         />
       ))) : (
         <div className={styles.text}>
@@ -45,4 +47,8 @@ export default function ClassIndex () {
       )}
     </div>
   )
+}
+
+ClassIndex.propTypes = {
+  onSwapClicked: PropTypes.func.isRequired
 }
