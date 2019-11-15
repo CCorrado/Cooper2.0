@@ -12,7 +12,7 @@ export default function CourseListing ({
   function getTimeFromCourse (time) {
     try {
       if (moment(time, 'HH:mm:ss').isValid()) {
-        return moment(time, 'HH:mm:ss').utc(true).format('h:mm a')
+        return moment(time, 'HH:mm:ss').format('h:mm a')
       }
       return null
     } catch (err) {
@@ -29,22 +29,22 @@ export default function CourseListing ({
         </div>
         {isRegistered && (
           <button
+            className={styles.button}
             type='button'
-            alt=''
             onClick={() => {
               swapClicked(course)
             }}
           >
-            <img className={styles['swap-icon']} src={swap} alt='' />
+            <img className={styles['swap-icon']} src={swap} alt='swap' />
           </button>
         )}
         {isRegistered && (
           <button
+            className={styles.button}
             type='button'
-            alt=''
             onClick={unregClicked}
           >
-            <img className={styles['swap-icon']} src={deleteIcon} alt='' />
+            <img className={styles['swap-icon']} src={deleteIcon} alt='delete' />
           </button>
         )}
       </div>

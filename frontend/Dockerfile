@@ -17,4 +17,4 @@ RUN chown -R nodejs:nodejs /usr/src/app
 
 USER nodejs
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

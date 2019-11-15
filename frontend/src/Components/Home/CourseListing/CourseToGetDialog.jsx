@@ -40,6 +40,9 @@ export default function CourseToGetDialog ({ courseIdToOffer }) {
       <button type='button' className={styles['close-container']} onClick={nav.goBackToPrevious}>
         <img className={styles['close-icon']} src={close} alt='close' />
       </button>
+      <div className={styles.title}>
+        Select course to receive on swap
+      </div>
       {courses && Array.isArray(courses) && (
         <Autocomplete
           onChange={async (event, selectedCourse, value) => {
