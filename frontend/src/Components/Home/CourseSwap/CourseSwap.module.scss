@@ -8,6 +8,11 @@
   margin-bottom: 5%;
 }
 
+.button {
+  background: transparent;
+  border: 0;
+}
+
 .title-container {
   padding-top: 2%;
   display: flex;
@@ -16,42 +21,20 @@
 }
 
 .course-title {
-  font-size: 24px;
+  font-size: 18px;
 }
 
-.button {
-  background: transparent;
-  border: 0;
-}
-
-.swap-icon {
+.accept-icon {
   display: flex;
-  height: 50px;
-  padding: 5%;
+  height: 75px;
   background: transparent;
   border: 0;
 }
 
-.course-instructor {
+.med-text {
   font-size: 18px;
 }
 
-.course-section {
-  font-size: 18px;
-}
-
-.course-term {
-  font-size: 18px;
-}
-
-.course-credits {
-  font-size: 14px;
-}
-
-.course-start {
-  font-size: 14px;
-}
-
-.course-end {
+.small-text {
   font-size: 14px;
 }

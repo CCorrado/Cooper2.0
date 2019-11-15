@@ -3,10 +3,11 @@ import styles from './HomeScreen.module.scss'
 import { UserContext } from '../../common/UserContext'
 import useCacheState from '../../common/hooks/useCacheState'
 import userService from '../../../services/api/userService'
+import CourseSwap from '../CourseSwap'
 
 export default function HomeScreen () {
   const userContext = useContext(UserContext)
-  const [userSwaps, setUserSwaps] = useCacheState('userSwaps', [])
+  const [userSwaps, setUserSwaps] = useCacheState('userSwaps', undefined)
 
   async function getCourses (accessToken) {
     const userSwapsResponse = await userService.getSwapsForUser(accessToken)
@@ -22,13 +23,13 @@ export default function HomeScreen () {
 
   return (
     <div className={styles.container}>
-      {userSwaps && userSwaps.map(userSwap => (
-        <div key={userSwap.courseSwapId}>
-          {`${
-            userSwap.courseToGiveId + userSwap.courseToGetId
-          }`}
+      {userSwaps && userSwaps.length ? userSwaps.map(userSwap => (
+        <CourseSwap key={userSwap.courseSwapId} courseSwap={userSwap} />
+      )) : (
+        <div className={styles.text}>
+          {'No course swaps currently available to accept'}
         </div>
-      ))}
+      )}
     </div>
   )
 }

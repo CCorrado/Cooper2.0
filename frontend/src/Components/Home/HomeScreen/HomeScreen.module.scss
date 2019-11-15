@@ -1,7 +1,12 @@
 .container {
+  padding-bottom: 10%;
+}
+
+.text {
+  text-align: center;
   display: flex;
-  height: 90%;
+  padding: 5%;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  height: 100%;
 }

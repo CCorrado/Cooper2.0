@@ -14,13 +14,18 @@
   padding: 5%;
 }
 
+.title {
+  text-align: center;
+  font-size: 24pt;
+  padding-bottom: 5%;
+}
+
 .close-icon {
   height: 48px;
   background: transparent;
   border: none;
   display: flex;
   flex-direction: row-reverse;
-  padding: 5%;
 }
 
 .autocomplete root {

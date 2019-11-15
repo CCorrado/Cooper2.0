@@ -34,7 +34,7 @@ services:
       - '/usr/src/app/node_modules'
     ports:
       - '9000:9000'
-    command: ["npm", "start"]
+    command: ["npm", "run", "watch"]
   cooper-frontend:
     container_name: cooper-frontend
     build:
@@ -47,3 +47,4 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+    command: ["npm", "run", "start"]
