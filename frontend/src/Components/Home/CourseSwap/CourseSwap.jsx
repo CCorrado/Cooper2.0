@@ -7,7 +7,7 @@ import accept from '../../../images/accept.svg'
 import { UserContext } from '../../common/UserContext'
 import userService from '../../../services/api/userService'
 
-export default function CourseSwap ({ courseSwap }) {
+export default function CourseSwap ({ courseSwap, onSwapAccept }) {
   const userContext = useContext(UserContext)
   const [courseToGet, setCourseToGet] = useState(undefined)
   const [courseToGive, setCourseToGive] = useState(undefined)
@@ -41,10 +41,6 @@ export default function CourseSwap ({ courseSwap }) {
     getCourses(userContext.token.accessToken)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  function acceptSwap () {
-    // TODO accept the course swap
-  }
 
   return (
     <Card className={styles.card}>
@@ -96,7 +92,7 @@ export default function CourseSwap ({ courseSwap }) {
             className={styles.button}
             type='button'
             onClick={() => {
-              acceptSwap()
+              onSwapAccept(courseSwap)
             }}
           >
             <img
@@ -117,5 +113,6 @@ CourseSwap.propTypes = {
     courseToGetId: PropTypes.string.isRequired,
     courseToGiveId: PropTypes.string.isRequired,
     swaperUserId: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  onSwapAccept: PropTypes.func.isRequired
 }

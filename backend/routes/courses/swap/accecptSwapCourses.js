@@ -102,7 +102,7 @@ module.exports = async function (req, res, next) {
       await registerUserForCourse(next, swapReq.swaperUserId, swaperCourseToRegister[0])
     })
     .catch(() => {
-      return next(new HttpError(400, 'Cannot complete course swap without swaperUserId and swapeeUserId parameter set.'))
+      return next(new HttpError(400, 'Could not complete course swap.'))
     })
 }
 

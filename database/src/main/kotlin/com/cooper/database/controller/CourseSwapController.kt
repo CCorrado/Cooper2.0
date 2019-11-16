@@ -20,7 +20,7 @@ class CourseSwapController {
 
     @RequestMapping(path = ["/courses/swaps"], method = [RequestMethod.GET])
     fun getCourseSwaps(): List<CourseSwap>? {
-        return courseSwapService?.listAllCourseSwaps()
+        return courseSwapService?.findByCourseSwapCompleted(false)
     }
 
     @RequestMapping(path = ["/courses/swaps/create"], method = [RequestMethod.POST])

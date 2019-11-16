@@ -8,6 +8,8 @@ interface CourseSwapService {
 
     fun findByCourseSwapId(id: Long?): CourseSwap?
 
+    fun findByCourseSwapCompleted(completed: Boolean): List<CourseSwap>?
+
     fun findBySwaperUserId(id: String?): List<CourseSwap>?
 
     fun findByCourseToGiveId(courseToGiveId: String?): List<CourseSwap>?
