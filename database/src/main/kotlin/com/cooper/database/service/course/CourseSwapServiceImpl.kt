@@ -31,6 +31,22 @@ class CourseSwapServiceImpl : CourseSwapService {
         return all
     }
 
+
+    override fun findByCourseSwapCompleted(completed: Boolean): List<CourseSwap>? {
+        val all = ArrayList<CourseSwap>()
+
+        try {
+            courseSwapRepository?.findBySwapCompleted(completed)?.let { swapsCompleted ->
+                for (courseSwap in swapsCompleted) {
+                    all.add(courseSwap)
+                }
+            }
+        } catch (err: Exception) {
+            throw ObjectNotFound(message = "Could not find any course swaps")
+        }
+        return all
+    }
+
     override fun findByCourseSwapId(id: Long?): CourseSwap? {
         id?.let { courseSwapId ->
             try {

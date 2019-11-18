@@ -9,7 +9,7 @@ const paths = {
     registerCourse: '/courses/registerCourse',
     unregister: '/users/courses/unregister'
   },
-  swaps: { getSwapsForUser: '/courses/swaps', createSwap: '/courses/swaps/create' }
+  swaps: { getSwapsForUser: '/courses/swaps', createSwap: '/courses/swaps/create', acceptSwap: '/courses/swaps/accept' }
 }
 
 function login (email, password) {
@@ -100,6 +100,25 @@ function createSwap (authToken, userId, courseToGet, courseToGive) {
   }).then(res => res.json())
 }
 
+function acceptSwap (authToken, userId, courseSwap) {
+  const acceptSwapRequest = {
+    courseSwapId: courseSwap.courseSwapId,
+    swapeeUserId: userId,
+    swaperUserId: courseSwap.swaperUserId,
+    courseToGetId: courseSwap.courseToGetId,
+    courseToGiveId: courseSwap.courseToGiveId,
+    swapeeAccept: true
+  }
+  return fetch(`${baseUrl}${paths.swaps.acceptSwap}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify(acceptSwapRequest)
+  }).then(res => res.json())
+}
+
 function unregisterFromCourse (userId, courseId, authToken) {
   return fetch(`${baseUrl}${paths.courses.unregister}?userId=${userId}&courseId=${courseId}`, {
     method: 'GET',
@@ -119,5 +138,6 @@ export default {
   registerCourse,
   getSwapsForUser,
   unregisterFromCourse,
-  createSwap
+  createSwap,
+  acceptSwap
 }

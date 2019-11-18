@@ -9,7 +9,7 @@ const env = require('../env')
 const DB_BASE_URL = env('DB_BASE_URL')
 
 function unregisterFromCourse (userId, courseId, next) {
-  return axios.get(urlJoin(DB_BASE_URL, 'courses', courseId, 'user', userId, 'unregister'))
+  return axios.get(urlJoin(DB_BASE_URL, 'courses', courseId.toString(), 'user', userId, 'unregister'))
     .then((response) => {
       return response
     })

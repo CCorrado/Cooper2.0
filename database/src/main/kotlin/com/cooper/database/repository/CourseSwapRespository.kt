@@ -10,4 +10,6 @@ interface CourseSwapRespository : CrudRepository<CourseSwap, Long> {
     fun findBySwaperUserId(swaperUserId: String): List<CourseSwap>?
 
     fun findByCourseToGiveId(courseToGiveId: String): List<CourseSwap>?
+
+    fun findBySwapCompleted(swapCompleted: Boolean): List<CourseSwap>?
 }

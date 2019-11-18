@@ -16,6 +16,11 @@ export default function HomeScreen () {
     }
   }
 
+  async function acceptSwap (courseSwap) {
+    await userService.acceptSwap(userContext.token.accessToken, userContext.userId, courseSwap)
+    await getCourses(userContext.token.accessToken)
+  }
+
   useEffect(() => {
     getCourses(userContext.token.accessToken)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,7 +29,13 @@ export default function HomeScreen () {
   return (
     <div className={styles.container}>
       {userSwaps && userSwaps.length ? userSwaps.map(userSwap => (
-        <CourseSwap key={userSwap.courseSwapId} courseSwap={userSwap} />
+        <CourseSwap
+          key={userSwap.courseSwapId}
+          courseSwap={userSwap}
+          onSwapAccept={(courseSwap) => {
+            acceptSwap(courseSwap)
+          }}
+        />
       )) : (
         <div className={styles.text}>
           {'No course swaps currently available to accept'}
