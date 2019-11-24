@@ -1,0 +1,49 @@
+version: '3'
+volumes:
+  dbdata:
+
+services:
+  cooper-mysql:
+    image: mysql:latest
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cooper
+      - MYSQL_PASSWORD=root
+    ports:
+      - '3306:3306'
+  cooper-database-api:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    depends_on:
+      - cooper-mysql
+    env_file:
+      - database/db.env
+    ports:
+      - '5000:8080'
+  cooper-backend:
+    container_name: cooper-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - './backend/:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '9000:9000'
+    command: ["npm", "start"]
+  cooper-frontend:
+    container_name: cooper-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - './frontend/:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development

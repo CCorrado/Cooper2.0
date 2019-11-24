@@ -1,0 +1,37 @@
+.text-input {
+  color: #000000;
+  font-size: 14pt;
+  align-self: flex-start;
+  background: transparent;
+  border: #282c34 solid 1pt;
+  border-radius: 0;
+  width: 100%;
+  padding: .5rem;
+  margin-top: 5% !important;
+  box-sizing: border-box;
+}
+
+.text-input input {
+  color: #000000;
+  font-size: 14pt;
+}
+
+.text-input label {
+  color: #282c34;
+  font-size: 14pt;
+}
+
+.error-border {
+  @extend .text-input;
+  border: #b60808 solid 1.25pt;
+}
+
+::placeholder {
+  color: #282c34;
+  font-size: 14pt;
+  align-self: flex-start;
+}
+
+input:invalid {
+  box-shadow: 0 0 0 0;
+}

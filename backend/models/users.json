@@ -1,0 +1,23 @@
+[
+  {
+    "id": "thisisauniqueid",
+    "first_name": "Tester",
+    "last_name": "Testing",
+    "email": "tester1@test.com",
+    "password": "Test1234"
+  },
+  {
+    "id": "thisisasimpleuniqueid",
+    "first_name": "Chris",
+    "last_name": "Corrado",
+    "email": "ccorrads@gmail.com",
+    "password": "Test1234"
+  },
+  {
+    "id": "thisisanotheruniqueid",
+    "first_name": "Testy",
+    "last_name": "Test",
+    "email": "tester2@test.com",
+    "password": "Test1234"
+  }
+]
