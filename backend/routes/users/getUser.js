@@ -23,9 +23,9 @@ const { HttpError } = require('../../errors')
  */
 
 /**
- * @route GET /users/getUser
+ * @route GET /api/users/getUser
  * @group users - Get a user by id
- * @param {int} id.query.required - The ID of the user desired
+ * @param {string} id.query.required - The ID of the user desired
  * @returns {UserSession.model} 200 - A User object
  * @returns {ErrorResponse.model}  default - HttpError - User not found
  * @security JWT

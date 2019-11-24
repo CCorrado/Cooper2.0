@@ -1,5 +1,6 @@
 package com.cooper.database.model
 
+import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.*
 
@@ -8,11 +9,13 @@ class Session {
 
     @Id
     @PrimaryKeyJoinColumn(name = "userId")
-    @Column(name = "sessionId")
-    var sessionId: Long = 1
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "sessionId", updatable = false, nullable = false)
+    var sessionId: Long = 0
 
     @Column(name = "userId")
-    var userId: Long? = 0
+    var userId: String? = ""
 
     @Column(name = "createdDate")
     var createdDate: Date? = Date()

@@ -33,31 +33,31 @@ class UserController {
             @RequestParam(name = "username", required = true) username: CharSequence
     ): UserSession? {
         userService?.findByUsername(request.queryString.split("=")[1])?.let { user ->
-                return UserSession(
-                        userId = user.userId,
-                        sessionId = null,
-                        role = user.role,
-                        name = user.name,
-                        username = user.username,
-                        userCreatedDate = user.createdDate,
-                        sessionCreatedDate = null,
-                        refreshToken = null,
-                        accessToken = null,
-                        expiresIn = null,
-                        tokenType = null,
-                        password = user.password
-                )
+            return UserSession(
+                    userId = user.userUuid,
+                    sessionId = null,
+                    role = user.role,
+                    name = user.name,
+                    username = user.username,
+                    userCreatedDate = user.createdDate,
+                    sessionCreatedDate = null,
+                    refreshToken = null,
+                    accessToken = null,
+                    expiresIn = null,
+                    tokenType = null,
+                    password = user.password
+            )
         } ?: run {
             throw ObjectNotFound(message = "User not found")
         }
     }
 
     @RequestMapping(path = ["/users/{id}"])
-    fun get(@PathVariable("id") id: Long?): UserSession? {
+    fun get(@PathVariable("id") id: String?): UserSession? {
         userService?.findById(id)?.let { user ->
-            sessionService?.findSessionByUserId(user.userId)?.let { session ->
+            sessionService?.findSessionByUserUuid(user.userUuid)?.let { session ->
                 return UserSession(
-                        userId = user.userId,
+                        userId = user.userUuid,
                         sessionId = session.sessionId,
                         role = user.role,
                         name = user.name,
@@ -80,12 +80,12 @@ class UserController {
     fun createUser(@RequestBody userSession: UserSession): UserSession? {
         val user = userService?.create(makeUserFromRequest(userSession))
 
-        val session: Session? = sessionService?.create(makeSessionFromRequest(user?.userId, userSession))
+        val session: Session? = sessionService?.create(makeSessionFromRequest(user?.userUuid, userSession))
         return UserSession(
-                userId = user?.userId,
-                sessionId = session?.sessionId,
+                userId = user?.userUuid,
                 role = user?.role,
                 name = user?.name,
+                sessionId = session?.sessionId,
                 username = user?.username,
                 userCreatedDate = user?.createdDate,
                 sessionCreatedDate = session?.createdDate,
@@ -101,9 +101,9 @@ class UserController {
     fun createSessionForUser(@RequestBody userSession: UserSession): UserSession? {
         userSession.username?.let { username ->
             userService?.findByUsername(username)?.let { user ->
-                val session: Session? = sessionService?.create(makeSessionFromRequest(user.userId, userSession))
+                val session: Session? = sessionService?.create(makeSessionFromRequest(user.userUuid, userSession))
                 return UserSession(
-                        userId = user.userId,
+                        userId = user.userUuid,
                         sessionId = session?.sessionId,
                         role = user.role,
                         name = user.name,
@@ -128,6 +128,7 @@ class UserController {
     private fun makeUserFromRequest(userSession: UserSession): User {
         val newUser = User()
         newUser.createdDate = Date()
+        newUser.userUuid = userSession.userId
         newUser.name = userSession.name
         newUser.password = userSession.password
         newUser.role = userSession.role
@@ -135,7 +136,7 @@ class UserController {
         return newUser
     }
 
-    private fun makeSessionFromRequest(userId: Long?, userSession: UserSession): Session {
+    private fun makeSessionFromRequest(userId: String?, userSession: UserSession): Session {
         val newSession = Session()
         newSession.userId = userId
         newSession.accessToken = userSession.accessToken

@@ -22,9 +22,6 @@ export default function About () {
             <div className='container'>
               <h3>Aditya Munot</h3>
               <p>Co-Founder</p>
-              <p>
-                <button type='button'>Contact</button>
-              </p>
             </div>
           </div>
         </div>
@@ -34,9 +31,6 @@ export default function About () {
             <div>
               <h3>Dariel Bobadilla</h3>
               <p>Co-Founder</p>
-              <p>
-                <button type='button'>Contact</button>
-              </p>
             </div>
           </div>
         </div>
@@ -46,9 +40,6 @@ export default function About () {
             <div>
               <h3>Chris Corrado</h3>
               <p>Co-Founder</p>
-              <p>
-                <button type='button'>Contact</button>
-              </p>
             </div>
           </div>
         </div>
@@ -58,9 +49,6 @@ export default function About () {
             <div>
               <h3>Ziyu Zhang</h3>
               <p>Co-Founder</p>
-              <p>
-                <button type='button'>Contact</button>
-              </p>
             </div>
           </div>
         </div>

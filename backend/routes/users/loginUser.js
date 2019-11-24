@@ -21,7 +21,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route POST /users/login
+ * @route POST /api/users/login
  * @group users - Login existing user
  * @param {LoginRequest.model} LoginRequest.body.required - the new login request
  * @returns {LoginResponse.model} 200 - The User's information and session
@@ -82,6 +82,7 @@ function sendLoginUser (res, user, next) {
     .then(function (response) {
       return res.status(201).json({
         username: response.data.username,
+        userId: response.data.userId,
         name: response.data.name,
         role: response.data.role,
         accessToken: response.data.accessToken,

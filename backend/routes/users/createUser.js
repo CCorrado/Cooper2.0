@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const axios = require('axios')
 const bcrypt = require('bcryptjs')
 const urlJoin = require('url-join')
+const uuid = require('uuid-random')
 
 const env = require('../../env')
 const { HttpError } = require('../../errors')
@@ -37,7 +38,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 
 /**
- * @route POST /users/register
+ * @route POST /api/users/register
  * @group users - Create a new user
  * @param {RegisterRequest.model} RegisterRequest.body.required - the new registration request
  * @returns {RegisterResponse.model} 200 - A New User object
@@ -45,6 +46,7 @@ const DB_BASE_URL = env('DB_BASE_URL')
  */
 module.exports = function (req, res, next) {
   const options = {}
+  const userId = uuid().toString()
   const userRequest = {
     'username': req.body.username,
     'password': req.body.password,
@@ -53,10 +55,10 @@ module.exports = function (req, res, next) {
   }
 
   const userToken = {
-    'access_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 hours' })),
+    'access_token': jwt.sign({ userId }, 'cooper', Object.assign(options, { expiresIn: '2 hours' })),
     'token_type': 'bearer',
     'expires_in': 60 * 60 * 24,
-    'refresh_token': jwt.sign({}, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
+    'refresh_token': jwt.sign({ userId }, 'cooper', Object.assign(options, { expiresIn: '2 days' }))
   }
 
   let newRequest = {
@@ -64,6 +66,7 @@ module.exports = function (req, res, next) {
     'password': userRequest.password,
     'name': userRequest.name,
     'role': userRequest.role,
+    userId,
     'accessToken': userToken.access_token,
     'tokenType': userToken.token_type,
     'expiresIn': userToken.expires_in,
@@ -86,6 +89,7 @@ function sendNewUser (res, user, next) {
       // make sure returning token here. token format TBD
       return res.status(201).json({
         username: response.data.username,
+        userId: response.data.userId,
         name: response.data.name,
         role: response.data.role,
         accessToken: response.data.accessToken,

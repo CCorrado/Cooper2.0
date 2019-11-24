@@ -5,11 +5,13 @@ import userService from '../../../services/api/userService'
 import { NavigationContext } from '../../Navigation/NavigationContext'
 import ProgressDialog from '../../common/ProgressDialog/ProgressDialog'
 import logo from '../../../images/bulldog.jpg'
+import { UserContext } from '../../common/UserContext'
 
 export default function Registration () {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const nav = useContext(NavigationContext)
+  const userContext = useContext(UserContext)
 
   const onSubmitForm = useCallback(
     async ({
@@ -49,10 +51,15 @@ export default function Registration () {
     }
     try {
       setLoading(true)
-      await userService.register(email, password, profile)
+      const userResponse = await userService.register(email, password, profile)
       setLoading(false)
       setError(false)
-      // TODO (corrado) store the response in the local frontend database
+      await userContext.setUserId(userResponse.userId)
+      await userContext.setToken({
+        accessToken: userResponse.accessToken,
+        refreshToken: userResponse.refreshToken
+      })
+      await userContext.saveUser(userResponse)
       nav.home.goHome()
     } catch (err) {
       setError(true)

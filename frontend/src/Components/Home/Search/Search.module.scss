@@ -1,4 +1,14 @@
 .container {
   display: flex;
+  height: 90%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
