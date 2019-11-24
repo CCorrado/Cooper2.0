@@ -38,9 +38,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "NODE_ENV=test react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx && sass-lint -c .sasslintrc.json -v"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
