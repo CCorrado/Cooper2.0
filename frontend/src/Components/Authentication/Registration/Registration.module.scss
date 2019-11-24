@@ -7,7 +7,6 @@
 .title {
   color: #303030;
   font-size: 24pt;
-  line-height: 1rem;
 }
 
 .error {
@@ -47,6 +46,16 @@
     @extend .section;
     margin-top: 5%;
   }
+}
+
+.image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-pad {
+  width: 20%;
 }
 
 .vh {
