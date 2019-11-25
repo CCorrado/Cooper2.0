@@ -1,0 +1,34 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5%;
+}
+
+.close-container {
+  width: 100%;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 5%;
+}
+
+.title {
+  text-align: center;
+  font-size: 24pt;
+  padding-bottom: 5%;
+}
+
+.close-icon {
+  height: 48px;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.autocomplete root {
+  width: 100%;
+  z-index: 1400;
+}

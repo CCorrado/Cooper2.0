@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+}
+
+.title-container {
+  padding-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.course-title {
+  font-size: 18px;
+}
+
+.accept-icon {
+  display: flex;
+  height: 75px;
+  background: transparent;
+  border: 0;
+}
+
+.med-text {
+  font-size: 18px;
+}
+
+.small-text {
+  font-size: 14px;
+}

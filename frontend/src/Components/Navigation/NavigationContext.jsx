@@ -29,6 +29,10 @@ function NavigationProvider ({ children, history }) {
     history.push('/home/classes')
   }
 
+  const goToCourseSwap = () => {
+    history.push('/home/classes/swap')
+  }
+
   const goBackToPrevious = () => {
     history.goBack()
   }
@@ -37,6 +41,7 @@ function NavigationProvider ({ children, history }) {
     goHome,
     goToClasses,
     goToSearch,
+    goToCourseSwap,
     goToAbout
   }
 

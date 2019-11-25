@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.30",
     "email-regex": "^4.0.0",
     "formik": "^1.5.1",
     "moment": "^2.24.0",

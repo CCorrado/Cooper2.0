@@ -1,0 +1,57 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.title-container {
+  padding-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.course-title {
+  font-size: 24px;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+}
+
+.swap-icon {
+  display: flex;
+  height: 50px;
+  padding: 5%;
+  background: transparent;
+  border: 0;
+}
+
+.course-instructor {
+  font-size: 18px;
+}
+
+.course-section {
+  font-size: 18px;
+}
+
+.course-term {
+  font-size: 18px;
+}
+
+.course-credits {
+  font-size: 14px;
+}
+
+.course-start {
+  font-size: 14px;
+}
+
+.course-end {
+  font-size: 14px;
+}

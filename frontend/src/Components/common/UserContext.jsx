@@ -24,6 +24,13 @@ export function UserProvider ({ children }) {
     return user
   }
 
+  async function unregisterCourse (course) {
+    const unreg = await userService.unregisterFromCourse(
+      userId, course.courseId, token.accessToken
+    )
+    return unreg
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -31,6 +38,7 @@ export function UserProvider ({ children }) {
         saveUser,
         user,
         setToken,
+        unregisterCourse,
         token,
         userId,
         setUserId

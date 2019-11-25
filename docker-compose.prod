@@ -21,7 +21,7 @@ services:
     depends_on:
       - cooper-mysql
     env_file:
-      - database/db.env
+      - database/.env
     ports:
       - '5000:8080'
   cooper-backend:

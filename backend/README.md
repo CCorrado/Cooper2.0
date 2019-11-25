@@ -1,11 +1,13 @@
-SSW 690 API Gateway
+SSW 695 NodeJS API Gateway
 
 ### Getting set up
-* Navigate to the root directory of this project
-* open a Terminal and execute `docker-compose up --build`
+- Note: Follow the top level readme for the .env file configuration
+* In this directory, run:
+    - `npm install`
+    - `npm run watch`
+
+The NodeJS application will be available via http://localhost:9000/
 
 ### API Specification
-* Open a browser and navigate to `127.0.0.1:3000/api-docs`
+* Open a browser and navigate to `http://localhost:9000/api-docs` for the Swagger UI route information
 
-### docs/
-* the mdj file can be opened with StarUML

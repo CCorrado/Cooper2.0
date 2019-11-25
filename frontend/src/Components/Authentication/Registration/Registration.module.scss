@@ -19,13 +19,12 @@
   color: #808080;
   font-size: 20pt;
   text-align: center;
-  margin-top: 5%;
   width: auto;
+  padding-top: 5%;
 
   &--left-align {
     @extend .subtitle;
     text-align: left;
-    margin-top: 5%;
   }
 }
 
@@ -33,7 +32,6 @@
   color: #303030;
   font-size: 16pt;
   text-align: left;
-  margin-top: 5%;
   width: auto;
 }
 
@@ -50,13 +48,12 @@
 
 .image {
   width: 100%;
-  padding-top: 5%;
   display: flex;
   justify-content: center;
 }
 
 .image-pad {
-  width: 35%;
+  width: 150px;
 }
 
 .vh {
