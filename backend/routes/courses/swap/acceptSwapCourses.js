@@ -66,31 +66,11 @@ module.exports = async function (req, res, next) {
     return next(new HttpError(400, 'courseToGiveId and courseToGetId are required parameters'))
   }
 
-  const userCourses = await getCoursesForUser(userId, next)
-  let matchingCourseToGive
-  let matchingCourseToGet
+  const matchingCourseToGet = await validateCurrentUserCourses(
+    next, userId, swapReq.courseToGetId, swapReq.courseToGiveId)
 
-  if (userCourses && userCourses.length) {
-    userCourses.map(course => {
-      if (course.section === swapReq.courseToGetId) {
-        matchingCourseToGet = course
-      }
-
-      if (course.section === swapReq.courseToGiveId) {
-        matchingCourseToGive = course
-      }
-    })
-  } else {
-    next(new HttpError(400, 'Failed to get any courses for the user'))
-  }
-
-  if (matchingCourseToGive) {
-    return next(new HttpError(400, 'Cannot accept swap for a course already registered for'))
-  }
-
-  if (!matchingCourseToGet) {
-    return next(new HttpError(400, 'Cannot accept a swap for a course this user cannot offer'))
-  }
+  const matchingCourseToGive = await validateOtherUserCourses(
+    next, swapReq.swaperUserId, swapReq.courseToGetId, swapReq.courseToGiveId)
 
   return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swaps', 'accept'), swapReq)
     .then(async () => {
@@ -115,4 +95,54 @@ async function registerUserForCourse (next, userId, courseToRegister) {
   const newCourse = { ...courseToRegister, userId }
   const registered = await sendCourseRegistration(newCourse, next)
   return registered
+}
+
+async function validateCurrentUserCourses (next, userId, courseToGetId, courseToGiveId) {
+  const userCourses = await getCoursesForUser(userId, next)
+  let matchingCourseToGive
+  let matchingCourseToGet
+
+  if (userCourses && userCourses.length) {
+    userCourses.map(course => {
+      if (course.section === courseToGetId) {
+        matchingCourseToGet = course
+      }
+
+      if (course.section === courseToGiveId) {
+        matchingCourseToGive = course
+      }
+    })
+  } else {
+    next(new HttpError(400, 'Failed to get any courses for the user'))
+  }
+
+  if (matchingCourseToGive) {
+    return next(new HttpError(400, 'Cannot accept swap for a course already registered for'))
+  }
+
+  if (!matchingCourseToGet) {
+    return next(new HttpError(400, 'Cannot accept a swap for a course this user cannot offer'))
+  }
+
+  return matchingCourseToGet
+}
+
+async function validateOtherUserCourses (next, userId, courseToGetId, courseToGiveId) {
+  const otherUserCourses = await getCoursesForUser(userId, next)
+  let matchingCourseToGive
+  if (otherUserCourses && otherUserCourses.length) {
+    otherUserCourses.map(course => {
+      if (course.section === courseToGiveId) {
+        matchingCourseToGive = course
+      }
+    })
+  } else {
+    next(new HttpError(400, 'Failed to get any courses for the original user'))
+  }
+
+  if (!matchingCourseToGive) {
+    return next(new HttpError(400, 'Original course swap request no longer available'))
+  }
+
+  return matchingCourseToGive
 }
