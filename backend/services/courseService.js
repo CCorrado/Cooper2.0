@@ -11,6 +11,9 @@ const DB_BASE_URL = env('DB_BASE_URL')
 function unregisterFromCourse (userId, courseId, next) {
   return axios.get(urlJoin(DB_BASE_URL, 'courses', courseId.toString(), 'user', userId, 'unregister'))
     .then((response) => {
+      if (response.status === 200) {
+        return { status: 200, message: `Unregistered User from Course ${courseId}` }
+      }
       return response
     })
     .catch(() => {
