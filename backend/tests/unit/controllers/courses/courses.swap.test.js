@@ -54,7 +54,7 @@ describe('Assert CourseSwap controller functions normally', () => {
     }
     try {
       return request(app)
-        .get('/api/courses/swaps')
+        .get('/api/courses/swaps/accept')
         .set('Authorization', 'Bearer someUniqueToken')
         .send(swapData)
         .expect(400, 'Cannot accept swap on behalf of another user')
