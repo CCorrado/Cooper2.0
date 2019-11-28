@@ -78,7 +78,7 @@ describe('Assert CourseSwap controller functions normally', () => {
     }
     let req = {
       body,
-      req
+      cooper
     }
     try {
       return request(app)
