@@ -9,7 +9,7 @@ const getUsersCourses = require('./users/getCoursesForUser')
 const unregisterUserFromCourse = require('./users/unregisterFromCourse')
 const getSwapCourses = require('./courses/swap/getSwapCourses')
 const createSwapCourses = require('./courses/swap/createSwapCourses')
-const acceptSwapCourses = require('./courses/swap/accecptSwapCourses')
+const acceptSwapCourses = require('./courses/swap/acceptSwapCourses')
 
 const router = require('express-promise-router')()
 const category = require('./users/association/associateCategory')
