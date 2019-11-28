@@ -41,28 +41,6 @@ describe('Assert CourseSwap controller functions normally', () => {
     }
   })
 
-  it('Should failed to get course due to GetID === GiveID', () => {
-    let swapData = {
-      'courseSwapId': '0',
-      'courseToGetId': 'SSW695',
-      'courseToGiveId': 'SSW695',
-      'createdDate': '2019/11/08',
-      'swapCompleted': 'completed',
-      'swapeeAccept': 'accepted',
-      'swapeeUserId': '0',
-      'swaperUserId': '1'
-    }
-    try {
-      return request(app)
-        .get('/api/courses/swaps/accept')
-        .set('Authorization', 'Bearer someUniqueToken')
-        .send(swapData)
-        .expect(400, 'Cannot accept swap on behalf of another user')
-    } catch(err) {
-      assert(false, e.message)
-    }
-  })
-
   it('Should successfully return swap course list to the user', () => {
     nock('http://cooper-database-api:8080/').get('/courses/swaps').delay(100).reply(200, [
       {
@@ -79,6 +57,31 @@ describe('Assert CourseSwap controller functions normally', () => {
     try {
       return request(app).get('/api/courses/swaps').set('Authorization', 'Bearer someUniqueToken').expect(200)
     } catch (e) {
+      assert(false, e.message)
+    }
+  })
+
+  /*
+   * Course Accept Test
+   */
+  it('Should failed to get course due to GetID === GiveID', () => {
+    let swapData = {
+      'courseSwapId': '0',
+      'courseToGetId': 'SSW695',
+      'courseToGiveId': 'SSW695',
+      'createdDate': '2019/11/08',
+      'swapCompleted': 'completed',
+      'swapeeAccept': 'accepted',
+      'swapeeUserId': '0',
+      'swaperUserId': '1'
+    }
+    try {
+      return request(app)
+        .post('/api/courses/swaps/accept')
+        .set('Authorization', 'Bearer someUniqueToken')
+        .send(swapData)
+        .expect(400, 'Cannot accept swap on behalf of another user')
+    } catch(err) {
       assert(false, e.message)
     }
   })
