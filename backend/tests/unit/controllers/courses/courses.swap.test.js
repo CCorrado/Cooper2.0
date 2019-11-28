@@ -65,24 +65,29 @@ describe('Assert CourseSwap controller functions normally', () => {
    * Course Accept Test
    */
   it('Should failed to get course due to GetID === GiveID', () => {
-    let swapData = {
+    let body = {
       'courseSwapId': '0',
       'courseToGetId': 'SSW695',
       'courseToGiveId': 'SSW695',
-      'createdDate': '2019/11/08',
-      'swapCompleted': 'completed',
       'swapeeAccept': 'accepted',
       'swapeeUserId': '0',
       'swaperUserId': '1'
     }
+    let cooper = {
+      'userId': '2'
+    }
+    let req = {
+      body,
+      req
+    }
     try {
       return request(app)
         .post('/api/courses/swaps/accept')
+        .send(req)
         .set('Authorization', 'Bearer someUniqueToken')
-        .send(swapData)
         .expect(400, 'Cannot accept swap on behalf of another user')
-    } catch(err) {
-      assert(false, e.message)
+    } catch (err) {
+      assert(false, err.message)
     }
   })
 })
