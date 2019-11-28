@@ -66,11 +66,18 @@ module.exports = async function (req, res, next) {
     return next(new HttpError(400, 'courseToGiveId and courseToGetId are required parameters'))
   }
 
-  const matchingCourseToGet = await validateCurrentUserCourses(
-    next, userId, swapReq.courseToGetId, swapReq.courseToGiveId)
+  let matchingCourseToGet
+  let matchingCourseToGive
 
-  const matchingCourseToGive = await validateOtherUserCourses(
-    next, swapReq.swaperUserId, swapReq.courseToGetId, swapReq.courseToGiveId)
+  try {
+    matchingCourseToGet = await validateCurrentUserCourses(
+      next, userId, swapReq.courseToGetId, swapReq.courseToGiveId)
+
+    matchingCourseToGive = await validateOtherUserCourses(
+      next, swapReq.swaperUserId, swapReq.courseToGiveId)
+  } catch (err) {
+    return next(new HttpError(400, err))
+  }
 
   return axios.post(urlJoin(DB_BASE_URL, 'courses', 'swaps', 'accept'), swapReq)
     .then(async () => {
@@ -80,6 +87,7 @@ module.exports = async function (req, res, next) {
       await unregisterUserFromCourse(next, swapReq.swaperUserId, matchingCourseToGive)
       await registerUserForCourse(next, swapReq.swapeeUserId, swapeeCourseToRegister[0])
       await registerUserForCourse(next, swapReq.swaperUserId, swaperCourseToRegister[0])
+      return next({ statusCode: 200, body: 'Successfully swapped courses with user!' })
     })
     .catch(() => {
       return next(new HttpError(400, 'Could not complete course swap.'))
@@ -113,21 +121,21 @@ async function validateCurrentUserCourses (next, userId, courseToGetId, courseTo
       }
     })
   } else {
-    next(new HttpError(400, 'Failed to get any courses for the user'))
+    throw new HttpError(400, 'Failed to get any courses for the user')
   }
 
   if (matchingCourseToGive) {
-    return next(new HttpError(400, 'Cannot accept swap for a course already registered for'))
+    throw new HttpError(400, 'Cannot accept swap for a course already registered for')
   }
 
   if (!matchingCourseToGet) {
-    return next(new HttpError(400, 'Cannot accept a swap for a course this user cannot offer'))
+    throw new HttpError(400, 'Cannot accept a swap for a course this user cannot offer')
   }
 
   return matchingCourseToGet
 }
 
-async function validateOtherUserCourses (next, userId, courseToGetId, courseToGiveId) {
+async function validateOtherUserCourses (next, userId, courseToGiveId) {
   const otherUserCourses = await getCoursesForUser(userId, next)
   let matchingCourseToGive
   if (otherUserCourses && otherUserCourses.length) {
@@ -137,11 +145,11 @@ async function validateOtherUserCourses (next, userId, courseToGetId, courseToGi
       }
     })
   } else {
-    next(new HttpError(400, 'Failed to get any courses for the original user'))
+    throw new HttpError(400, 'Failed to get any courses for the original user')
   }
 
   if (!matchingCourseToGive) {
-    return next(new HttpError(400, 'Original course swap request no longer available'))
+    throw new HttpError(400, 'Original course swap request no longer available')
   }
 
   return matchingCourseToGive

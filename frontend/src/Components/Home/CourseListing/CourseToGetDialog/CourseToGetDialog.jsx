@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import Autocomplete from '@material-ui/lab/Autocomplete/Autocomplete'
 import TextField from '@material-ui/core/TextField'
 import styles from './CourseToGetDialog.module.scss'
-import close from '../../../images/close.svg'
-import useCacheState from '../../common/hooks/useCacheState'
-import userService from '../../../services/api/userService'
-import { UserContext } from '../../common/UserContext'
-import { NavigationContext } from '../../Navigation/NavigationContext'
+import close from '../../../../images/close.svg'
+import useCacheState from '../../../common/hooks/useCacheState'
+import userService from '../../../../services/api/userService'
+import { UserContext } from '../../../common/UserContext'
+import { NavigationContext } from '../../../Navigation/NavigationContext'
 
 export default function CourseToGetDialog ({ courseIdToOffer }) {
   const [courses, setCourses] = useCacheState('courses', [])
