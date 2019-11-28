@@ -106,7 +106,7 @@ describe('Assert CourseSwap controller functions normally', () => {
     }
   })
 
-  it('Should failed to get course for user', () => {
+  it('Should fail to get course for user', () => {
     sinon.stub(jwt, 'verify').returns({'userId': '0'})
     let body = {
       'courseSwapId': '0',
@@ -119,6 +119,44 @@ describe('Assert CourseSwap controller functions normally', () => {
     try {
       return request(app)
         .post('/api/courses/swaps/accept')
+        .set('Authorization', 'Bearer someUniqueToken')
+        .send(body)
+        .expect(400, 'Failed to get courses for the user')
+    } catch (err) {
+      assert(false, err.message)
+    }
+  })
+
+  /*
+   * Test createSwapCourses
+   */
+  it('Should fail to create due to swaperUserId === userId', () => {
+    sinon.stub(jwt, 'verify').returns({'userId': '0'})
+    let body = {
+      'swaperUserId': '1',
+      'courseToGiveId': 'SSW695',
+      'courseToGetId': 'SSW690'
+    }
+    try {
+      return request(app)
+        .post('/api/courses/swaps/create')
+        .set('Authorization', 'Bearer someUniqueToken')
+        .send(body)
+        .expect(400, 'Cannot create swap for a different user')
+    } catch (err) {
+      assert(false, err.message)
+    }
+  })
+  it('Should fail to get course for user', () => {
+    sinon.stub(jwt, 'verify').returns({'userId': '0'})
+    let body = {
+      'swaperUserId': '0',
+      'courseToGiveId': 'SSW695',
+      'courseToGetId': 'SSW690'
+    }
+    try {
+      return request(app)
+        .post('/api/courses/swaps/create')
         .set('Authorization', 'Bearer someUniqueToken')
         .send(body)
         .expect(400, 'Failed to get courses for the user')
