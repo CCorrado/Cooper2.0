@@ -1,11 +1,13 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 5%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  justify-content: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+  max-width: 75%;
+  width: 100%;
 }
 
 .button {
@@ -21,7 +23,7 @@
 }
 
 .course-title {
-  font-size: 18px;
+  font-size: 1.3rem;
 }
 
 .accept-icon {
@@ -32,9 +34,9 @@
 }
 
 .med-text {
-  font-size: 18px;
+  font-size: .8rem;
 }
 
 .small-text {
-  font-size: 14px;
+  font-size: .6rem;
 }
