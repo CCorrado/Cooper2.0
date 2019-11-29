@@ -110,10 +110,12 @@ CourseListing.propTypes = {
     room: PropTypes.string.isRequired
   }).isRequired,
   isRegistered: PropTypes.bool,
-  unregClicked: PropTypes.func.isRequired,
-  swapClicked: PropTypes.func.isRequired
+  unregClicked: PropTypes.func,
+  swapClicked: PropTypes.func
 }
 
 CourseListing.defaultProps = {
-  isRegistered: false
+  isRegistered: false,
+  unregClicked: undefined,
+  swapClicked: undefined
 }
