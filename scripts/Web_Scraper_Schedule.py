@@ -1,16 +1,13 @@
-import requests
-# pip install requests 
 import json
-from collections import defaultdict
+import requests
 from bs4 import BeautifulSoup
-# pip install beautifulsoup4
+from collections import defaultdict
 
 
 def main():
-    page = requests.get("https://web.stevens.edu/scheduler/core/core.php?cmd=getxml&term=2019F")
-    # print(page.content)
+    page = requests.get("https://web.stevens.edu/scheduler/core/core.php?cmd=getxml&term=2020S")
     soup = BeautifulSoup(page.text, 'html.parser')
-    with open("Term_Schedule.json", 'a') as jsonFile:
+    with open("Term_Schedule_2020.json", 'a') as jsonFile:
         courses_list = []
         courses = soup.findAll('course')
         for course in courses:
@@ -27,32 +24,36 @@ def main():
             courses_json['endDate'] = course['enddate']
             courses_json['instructor'] = course['instructor1']
             courses_json['term'] = course['term']
+            meeting = course.find('meeting')
+
             try:
-                meeting = course.find('meeting')
-                courses_json['meetingDay'] = meeting['day']
-                # print(Meeting_day)
-            except Exception as e:
-                # print(e)
+                if meeting:
+                    courses_json['meetingDay'] = meeting['day']
+            except Exception:
                 courses_json['meetingDay'] = 'N/A'
-                # print(Meeting_day)
             try:
-                courses_json['startTime'] = meeting['starttime']
-            except:
+                if meeting:
+                    courses_json['startTime'] = meeting['starttime']
+            except Exception:
                 courses_json['startTime'] = 'N/A'
             try:
-                courses_json['endTime'] = meeting['endtime']
-            except:
+                if meeting:
+                    courses_json['endTime'] = meeting['endtime']
+            except Exception:
                 courses_json['endTime'] = 'N/A'
             try:
-                courses_json['building'] = meeting['building']
-            except:
+                if meeting:
+                    courses_json['building'] = meeting['building']
+            except Exception:
                 courses_json['building'] = 'N/A'
             try:
-                courses_json['room'] = meeting['room']
-            except:
+                if meeting:
+                    courses_json['room'] = meeting['room']
+            except Exception:
                 courses_json['room'] = 'N/A'
+
             courses_list.append(courses_json)
-        json.dump(courses_list, jsonFile, indent=4)
+        json.dump(courses_list, jsonFile, indent=2)
 
 
 if __name__ == '__main__':
