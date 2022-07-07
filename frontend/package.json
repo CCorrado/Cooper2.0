@@ -8,7 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.30",
     "email-regex": "^4.0.0",
     "formik": "^1.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
